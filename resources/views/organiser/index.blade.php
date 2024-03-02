@@ -71,7 +71,7 @@
 
                                     <td
                                         class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                        <form action="{{ route('categories.destroy', $event->slug) }}"
+                                        <form action="{{ route('events.destroy', $event->slug) }}"
                                               method="post">
                                             @method("delete")
                                             @csrf
