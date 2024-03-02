@@ -41,7 +41,9 @@ class EventController extends Controller
     {
         $validatedData = $request->validated();
         $event->update($validatedData);
+        $event->load("images");
         $this->updateImages($event, request()->file("images"));
+        return back()->with("success", "event updated successfully");
     }
 
     /**
