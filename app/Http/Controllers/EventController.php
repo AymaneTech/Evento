@@ -4,24 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Models\Category;
 use App\Models\Event;
+use App\Traits\HasImage;
 
 class EventController extends Controller
 {
+    use HasImage;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view("organiser.index", [
+            "categories" => Category::all(),
+            "events" => Event::paginate(8),
+        ]);
     }
 
     /**
@@ -29,23 +28,10 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Event $event)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Event $event)
-    {
-        //
+        $validatedData = $request->validated();
+        $event = Event::create($validatedData);
+        $this->insert($event, request()->file("image"));
+        return back()->with("success", "event created successfully");
     }
 
     /**

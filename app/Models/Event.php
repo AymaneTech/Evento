@@ -11,7 +11,14 @@ class Event extends Model
     use HasFactory, Sluggable;
 
     protected $guarded = [];
+    protected $casts = [
+        'date' => 'datetime',
+    ];
 
+    public function images()
+    {
+        return $this->hasMany(Image::class, "imageable_id");
+    }
     public function getRouteKeyName(): string
     {
         return "slug";
@@ -25,4 +32,5 @@ class Event extends Model
             ]
         ];
     }
+
 }

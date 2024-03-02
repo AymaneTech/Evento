@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->text("description");
             $table->integer("numberOfSeats");
             $table->float("price");
-            $table->dateTime("date");
-            $table->boolean("isFull");
+            $table->timestamp("date");
+            $table->boolean("isFull")->default(false);
             $table->string("bookingType")->default("automatic");
             $table->foreignId("category_id")
                 ->constrained("categories")

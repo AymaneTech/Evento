@@ -1,4 +1,4 @@
-<x-modals.modal name="category-create" width="xl">
+<x-modals.modal name="category-create" width="xl" title="create new category">
     <form action="{{ route("categories.store") }}" method="POST" class="p-4 md:p-5" enctype="multipart/form-data">
         @csrf
         <div class="grid gap-4 mb-4 grid-cols-2">

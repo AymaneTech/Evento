@@ -4,7 +4,8 @@ namespace App\Traits;
 
 trait HasImage
 {
-    public function create(object $object, $image){
+    public function create(object $object, $image)
+    {
         $imageName = $this->move($image);
         $object->image()->create([
             "path" => $imageName,
@@ -12,7 +13,21 @@ trait HasImage
             "imageable_id" => $object->id,
         ]);
     }
-    public function updateImg(object $object, $image){
+
+    public function insert(object $object, array $images)
+    {
+        foreach ($images as $image) {
+            $imageName = $this->move($image);
+            $object->images()->create([
+                "path" => $imageName,
+                "imageable_type" => get_class($object),
+                "imageable_id" => $object->id,
+            ]);
+        }
+    }
+
+    public function updateImg(object $object, $image)
+    {
         $imageName = $this->move($image);
         $object->image()->update([
             "path" => $imageName,

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Traits\HasImage;
 
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(CategoryRequest $request)
     {
         $validatedData = $request->validated();
         $category = Category::create($validatedData);
@@ -34,7 +34,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $validatedData = $request->validated();
         $category->update($validatedData);

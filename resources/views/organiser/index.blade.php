@@ -5,8 +5,8 @@
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                 <div
                     class="flex justify-between mb-8 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <h6 class="">Categories table</h6>
-                    <x-modals.button name="category-create">create new category</x-modals.button>
+                    <h6 class="">Events table</h6>
+                    <x-modals.button name="event-create">create new event</x-modals.button>
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-0 overflow-x-auto">
@@ -19,20 +19,32 @@
                                 </th>
                                 <th
                                     class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Name
+                                    Title
                                 </th>
                                 <th
                                     class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Description
+                                    Date
                                 </th>
                                 <th
-                                    class="px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                    Number of seats
+                                </th>
+                                <th
+                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                    Price
+                                </th>
+                                <th
+                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                    Availability
+                                </th>
+                                <th
+                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                     Actions
                                 </th>
                             </tr>
                             </thead>
                             <tbody class="border-t">
-                            @foreach ($categories as $category)
+                            @foreach ($events as $event)
                                 <tr>
                                     <td
                                         class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -43,41 +55,51 @@
                                                      alt="spotify"/>
                                             </div>
                                             <div class="my-auto">
-                                                <h6 class="mb-0 text-sm leading-normal ">{{ $category->id }}</h6>
+                                                <h6 class="mb-0 text-sm leading-normal ">{{ $event->id }}</h6>
                                             </div>
                                         </div>
                                     </td>
-                                    <x-td size="text-sm">{{ $category->name }}</x-td>
-                                    <x-td>{{ $category->description }}</x-td>
-                                    <x-td>{{ count($category->events) }}</x-td>
-                                    <td class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                        <form action="{{ route('categories.destroy', $category->slug) }}"
+                                    <x-td size="text-sm">{{ $event->title }}</x-td>
+                                    <x-td>{{ $event->date->diffForHumans() }}</x-td>
+                                    <x-td>{{ $event->numberOfSeats }}</x-td>
+                                    <x-td>${{ $event->price }}</x-td>
+                                    <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                        <span class="bg-{{$event->isFull ? 'red' : 'green'}}-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{$event->isFull ? "Full" : "Available"}}</span>
+                                    </td>
+
+
+
+                                    <td
+                                        class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                        <form action="{{ route('categories.destroy', $event->slug) }}"
                                               method="post">
                                             @method("delete")
                                             @csrf
                                             <x-icon name="delete"/>
                                         </form>
-                                        <button data-modal-target="category-update" data-modal-toggle="category-update"
+                                        <button data-modal-target="event-update" data-modal-toggle="event-update"
                                                 type="submit"
-                                                data-slug="{{ $category->slug }}"
-                                                data-name="{{ $category->name }}"
-                                                data-description="{{ $category->description }}">
+                                                data-slug="{{ $event->slug }}"
+                                                data-name="{{ $event->name }}"
+                                                data-description="{{ $event->description }}">
                                             <x-icon name="update"/>
                                         </button>
+
+
                                     </td>
                                 </tr>
                             @endforeach
 
                             </tbody>
                         </table>
-                        <div>{{ $categories->links() }}</div>
+                        <div>{{ $events->links() }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <x-modals.category-create/>
-    <x-modals.category-update/>
-    <script src="/assets/js/category-update.js"></script>
+    <x-modals.event-create :categories="$categories"/>
+    {{-- <x-modals.event-update/> --}}
+    <script src="/assets/js/event-update.js"></script>
 
 </x-dashboard-layout>

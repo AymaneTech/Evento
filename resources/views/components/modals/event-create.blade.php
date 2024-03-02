@@ -1,19 +1,29 @@
-<x-modals.modal name="category-update" width="xl" title="update this category">
-    <form id="category-edit" method="POST" class="p-4 md:p-5" enctype="multipart/form-data">
-        @method("patch")
+<x-modals.modal name="event-create" width="4xl" title="Create new Event">
+    <form action="{{ route("events.store") }}" method="POST" class="p-4 md:p-5" enctype="multipart/form-data">
         @csrf
-        <div class="grid gap-4 mb-4 grid-cols-2">
+        <div class="flex flex-col gap-4 mb-4" >
             <div class="col-span-2">
-                <x-text-input type="text" name="name" placeholder="Enter category name !!" />
+                <x-text-input type="text" name="title" placeholder="Enter event name !!" />
+            </div>
+            <div class="flex justify-between gap-4 ">
+                <x-text-input placeholder="enter the number of seats"  type="number" name="numberOfSeats" />
+                <x-text-input  placeholder="enter price" type="number" name="price" />
+            </div>
+            <div class="flex justify-between gap-4 ">
+                <x-select-loop name="category_id" :data="$categories"/>
+                <x-select-enum name="bookingType" :enum="App\Enums\BookingType::cases()"/>
+                <div class="flex flex-col">
+                <x-input-label>Event Date</x-input-label>
+                <x-text-input name="date" type="datetime-local"/>
+                </div>
             </div>
             <div class="col-span-2">
-                <x-text-input type="file" name="image" />
+                <x-text-input type="file" name="image[]" multiple/>
             </div>
-
             <div class="col-span-2">
                 <textarea id="description" rows="4" name="description"
                           class="text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
-                          placeholder="Write category description here"></textarea>
+                          placeholder="Write event description here"></textarea>
             </div>
         </div>
         <div class="flex-none text-right">
