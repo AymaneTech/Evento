@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +19,10 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+        $title = $faker->name;
         return [
-            "name" => $faker->title,
+            "name" => $title,
+            "slug" => SlugService::createSlug(Category::class, "slug", $title),
             "description" => $faker->sentence,
         ];
     }

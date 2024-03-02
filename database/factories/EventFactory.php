@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +19,10 @@ class EventFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+        $title = $faker->name;
         return [
-            "title" => $faker->title,
+            "title" => $title,
+            "slug" => SlugService::createSlug(Event::class, "slug", $title),
             "description" => $faker->paragraph,
             "numberOfSeats" => $faker->numberBetween(12, 100),
             "price" => $faker->numberBetween(30, 400),

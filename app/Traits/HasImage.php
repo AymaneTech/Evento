@@ -12,6 +12,14 @@ trait HasImage
             "imageable_id" => $object->id,
         ]);
     }
+    public function updateImg(object $object, $image){
+        $imageName = $this->move($image);
+        $object->image()->update([
+            "path" => $imageName,
+            "imageable_type" => get_class($object),
+            "imageable_id" => $object->id,
+        ]);
+    }
 
     public function move($image)
     {
