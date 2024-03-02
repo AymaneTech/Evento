@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let slug = this.getAttribute("data-slug");
             category.name.value = this.getAttribute("data-name");
             category.description.value = this.getAttribute("data-description");
-            modal.action = `http://localhost/dashboard/categories/${slug}`;
+            modal.action = `http://localhost/organiser/events/${slug}`;
             console.log(modal)
         });
     });

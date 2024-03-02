@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\EventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Category;
 use App\Models\Event;
@@ -19,14 +19,14 @@ class EventController extends Controller
     {
         return view("organiser.index", [
             "categories" => Category::all(),
-            "events" => Event::paginate(8),
+            "events" => Event::with("category")->paginate(8),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventRequest $request)
+    public function store(EventRequest $request)
     {
         $validatedData = $request->validated();
         $event = Event::create($validatedData);
@@ -37,9 +37,11 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        //
+        $validatedData = $request->validated();
+        $event->update($validatedData);
+        $this->updateImages($event, request()->file("images"));
     }
 
     /**

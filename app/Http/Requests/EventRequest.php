@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreImageRequest extends FormRequest
+class EventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "title" => "required",
+            "description" => "required",
+            "category_id" => "required",
+            "date" => "required",
+            "bookingType" => "required",
+            "price" => "required",
+            "numberOfSeats" => "required",
         ];
     }
 }

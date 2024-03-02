@@ -66,9 +66,6 @@
                                     <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                         <span class="bg-{{$event->isFull ? 'red' : 'green'}}-500 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{$event->isFull ? "Full" : "Available"}}</span>
                                     </td>
-
-
-
                                     <td
                                         class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                         <form action="{{ route('events.destroy', $event->slug) }}"
@@ -80,7 +77,12 @@
                                         <button data-modal-target="event-update" data-modal-toggle="event-update"
                                                 type="submit"
                                                 data-slug="{{ $event->slug }}"
-                                                data-name="{{ $event->name }}"
+                                                data-title="{{ $event->title }}"
+                                                data-date="{{ $event->date }}"
+                                                data-price="{{ $event->price }}"
+                                                data-numberOfSeats="{{ $event->numberOfSeats }}"
+                                                data-bookingType="{{ $event->bookingType }}"
+                                                data-categoryId="{{ $event->category->id }}"
                                                 data-description="{{ $event->description }}">
                                             <x-icon name="update"/>
                                         </button>
@@ -99,7 +101,7 @@
         </div>
     </div>
     <x-modals.event-create :categories="$categories"/>
-    {{-- <x-modals.event-update/> --}}
+     <x-modals.event-update :categories="$categories"/>
     <script src="/assets/js/event-update.js"></script>
 
 </x-dashboard-layout>

@@ -19,6 +19,12 @@ class Event extends Model
     {
         return $this->hasMany(Image::class, "imageable_id");
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+
+    }
     public function getRouteKeyName(): string
     {
         return "slug";

@@ -36,6 +36,18 @@ trait HasImage
         ]);
     }
 
+    public function updateImages(object $object, $images)
+    {
+        foreach ($images as $image) {
+            $imageName = $this->move($image);
+            $object->images()->update([
+                "path" => $imageName,
+                "imageable_type" => get_class($object),
+                "imageable_id" => $object->id,
+            ]);
+        }
+    }
+
     public function move($image)
     {
         $imageName = time() . $image->getClientOriginalName();
