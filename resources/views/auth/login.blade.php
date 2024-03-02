@@ -20,7 +20,7 @@
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                         <div class="mb-4">
-                                            <x-text-input name="email" type="email" placeholder="Email" />
+                                            <x-text-input name="password" type="password" placeholder="password" />
                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         </div>
                                         <div class="block mt-4">

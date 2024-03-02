@@ -86,7 +86,7 @@
 
                         <!-- Confirm Password -->
                         <div class="mb-4">
-                            <x-text-input name="password" type="password" placeholder="Password"/>
+                            <x-text-input name="password_confirmation" type="password" placeholder="Password"/>
                             <x-input-error :messages="$errors->get('password')" class="mt-2"/>
                         </div>
                         <div class="text-center" role="form text-left">
