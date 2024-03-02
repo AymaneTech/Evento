@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "name",
+        "description",
+    ];
+    public function image(){
+        return $this->belongsTo(Image::class);
+    }
     public function events (){
         return $this->hasMany(Event::class);
     }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
-    <title>Argon Dashboard 2 Tailwind by Creative Tim</title>
+    <title>Evento</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Font Awesome Icons -->
@@ -16,8 +16,9 @@
     <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Main Styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link href="/assets/css/argon-dashboard-tailwind.css?v=1.0.1" rel="stylesheet" />
-  </head>
+</head>
 
   <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
     <div class="absolute w-full bg-blue-500 min-h-75"></div>
@@ -31,6 +32,7 @@
       @include('partials.dashboard-footer')
       </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </body>
   <!-- plugin for scrollbar  -->
   <script src="/assets/js/plugins/perfect-scrollbar.min.js" async></script>
