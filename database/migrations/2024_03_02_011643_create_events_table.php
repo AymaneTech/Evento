@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BookingType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class extends Migration {
             $table->float("price");
             $table->timestamp("date");
             $table->boolean("isFull")->default(false);
-            $table->string("bookingType")->default("automatic");
+            $table->string("bookingType")->default(BookingType::AUTOMATIC->value);
             $table->foreignId("category_id")
                 ->constrained("categories")
                 ->cascadeOnUpdate()
