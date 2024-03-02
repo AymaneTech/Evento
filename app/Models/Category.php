@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    public function event (){
+    public function events (){
         return $this->hasMany(Event::class);
     }
 }
