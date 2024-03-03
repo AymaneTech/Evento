@@ -49,7 +49,7 @@
                             </thead>
                             <tbody class="border-t">
                             @foreach ($events as $event)
-                                <tr>
+                                <tr class="{{$event->isVerified ? "bg-red-200" : ""}}">
                                     <td
                                         class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                         <div class="flex px-2">
