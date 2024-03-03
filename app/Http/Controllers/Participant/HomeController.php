@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         return view("participant.index", [
             "categories" => Category::all(),
-            "events" => Event::all(),
+            "events" => Event::with("organiser", "images", "category")->get(),
         ]);
     }
 }

@@ -30,6 +30,7 @@ class EventRequest extends FormRequest
             "price" => "required",
             "numberOfSeats" => "required",
             "location" => "required",
+            "user_id" => "required",
         ];
     }
 }
