@@ -51,7 +51,7 @@
                                     <x-td>{{ $category->description }}</x-td>
                                     <x-td>{{ count($category->events) }}</x-td>
                                     <td class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                        <form action="{{ route('categories.destroy', $category->slug) }}"
+                                        <form action="{{ route('admin.categories.destroy', $category->slug) }}"
                                               method="post">
                                             @method("delete")
                                             @csrf

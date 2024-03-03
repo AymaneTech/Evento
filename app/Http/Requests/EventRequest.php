@@ -29,6 +29,7 @@ class EventRequest extends FormRequest
             "bookingType" => "required",
             "price" => "required",
             "numberOfSeats" => "required",
+            "location" => "required",
         ];
     }
 }

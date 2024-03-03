@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Organiser;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
-use App\Http\Requests\UpdateEventRequest;
 use App\Models\Category;
 use App\Models\Event;
 use App\Traits\HasImage;
@@ -42,7 +42,9 @@ class EventController extends Controller
         $validatedData = $request->validated();
         $event->update($validatedData);
         $event->load("images");
-        $this->updateImages($event, request()->file("images"));
+        if (request()->has("images")) {
+            $this->updateImages($event, request()->file("images"));
+        }
 
         return back()->with("success", "event updated successfully");
     }

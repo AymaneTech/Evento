@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Models;
 
-use App\Models\Event;
+use App\Enums\BookingType;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,7 +28,8 @@ class EventFactory extends Factory
             "price" => $faker->numberBetween(30, 400),
             "date" => $faker->dateTime(),
             "isFull" => false,
-            "bookingType" => "automatic",
+            "bookingType" => BookingType::AUTOMATIC,
+            "location" => $faker->address,
         ];
     }
 }

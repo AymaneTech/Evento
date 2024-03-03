@@ -19,10 +19,7 @@ class DatabaseSeeder extends Seeder
             ->has(Event::factory()
                 ->count(4))
             ->count(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(RoleSeeder::class);
+        $this->call(AdminSeeder::class);
     }
 }

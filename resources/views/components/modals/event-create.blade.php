@@ -8,6 +8,7 @@
             <div class="flex justify-between gap-4 ">
                 <x-text-input placeholder="enter the number of seats"  type="number" name="numberOfSeats" />
                 <x-text-input  placeholder="enter price" type="number" name="price" />
+                <x-text-input  placeholder="enter event address" type="text" name="location" />
             </div>
             <div class="flex justify-between gap-4 ">
                 <x-select-loop name="category_id" :data="$categories"/>

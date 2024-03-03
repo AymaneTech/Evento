@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Organiser\EventController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('dashboard/categories', CategoryController::class);
+Route::group(["prefix" => "dashboard", "as" => "admin."], function (){
+    Route::resource('categories', CategoryController::class);
+    Route::get("events", [EventController::class, "index"])->name("events.index");
+    Route::post("events/update/{event}", [AdminEventController::class, "update"])->name("events.update");
+});
 
 Route::resource("organiser/events", EventController::class);
 
