@@ -1,4 +1,4 @@
-<x-dashboard-layout>
+<x-layouts.dashboard-layout>
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -80,4 +80,4 @@
     <x-modals.category-update/>
     <script src="/assets/js/category-update.js"></script>
 
-</x-dashboard-layout>
+</x-layouts.dashboard-layout>

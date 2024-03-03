@@ -1,4 +1,4 @@
-<x-dashboard-layout>
+<x-layouts.dashboard-layout>
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -126,4 +126,4 @@
     <x-modals.event-update :categories="$categories"/>
     <script src="/assets/js/event-update.js"></script>
 
-</x-dashboard-layout>
+</x-layouts.dashboard-layout>
