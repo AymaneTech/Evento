@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view("admin.categories", [
-            "categories" => Category::with("events")->paginate(10),
+            "categories" => Category::with("events", "image")->paginate(10),
         ]);
     }
 
@@ -28,7 +28,7 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validated();
         $category = Category::create($validatedData);
-        $this->create($category, $validatedData["image"]);
+        $this->create($category, request()->file("image"));
         return back()->with("success", "Category created Successfully");
     }
 
@@ -40,7 +40,7 @@ class CategoryController extends Controller
         $validatedData = $request->validated();
         $category->update($validatedData);
         if ($request->has('image')) {
-            $this->updateImg($category, $validatedData["image"]);
+            $this->updateImg($category, request()->file("image"));
         }
         return back()->with("success", "Category updated Successfully");
     }

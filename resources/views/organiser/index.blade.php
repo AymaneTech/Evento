@@ -54,8 +54,8 @@
                                         class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                         <div class="flex px-2">
                                             <div>
-                                                <img src="/assets/img/small-logos/logo-spotify.svg"
-                                                     class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out rounded-full h-9 w-9"
+                                                <img src="{{ asset("storage/images/". $event->images[0]->path) }}"
+                                                     class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out rounded-lg w-16 h-16"
                                                      alt="spotify"/>
                                             </div>
                                             <div class="my-auto">
