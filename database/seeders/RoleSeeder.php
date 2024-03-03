@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class  RoleSeeder extends Seeder
@@ -12,9 +12,17 @@ class  RoleSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\Role::factory()->create([
-             'name' => '',
-             'email' => 'test@example.com',
-         ]);
+        Role::create([
+            'name' => 'admin',
+            "guard_name" => "web"
+            ]);
+        Role::create([
+            'name' => 'organiser',
+            "guard_name" => "web"
+            ]);
+        Role::create([
+            'name' => 'participant',
+            "guard_name" => "web"
+            ]);
     }
 }

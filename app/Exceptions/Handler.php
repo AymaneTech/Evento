@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,4 +30,29 @@ class Handler extends ExceptionHandler
             //
         });
     }
+//    public function report(Throwable $exception)
+//    {
+//        if ($exception instanceof ModelNotFoundException) {
+//            Log::error("Model not found: " . $exception->getMessage());
+//        } elseif ($exception instanceof QueryException) {
+//            Log::error("Query exception: " . $exception->getMessage());
+//        } else {
+//            Log::error("Exception: " . $exception->getMessage());
+//        }
+//
+//        parent::report($exception);
+//    }
+//
+//    public function render($request, Throwable $exception)
+//    {
+//        if ($exception instanceof ModelNotFoundException) {
+//            return back()->with("error", "Category not found");
+//        } elseif ($exception instanceof QueryException) {
+//            return back()->with("error", "Error deleting category");
+//        } else {
+//            return back()->with("error", "Unexpected error occurred");
+//        }
+//
+//        return parent::render($request, $exception);
+//    }
 }
