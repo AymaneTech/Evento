@@ -12,6 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+//        Schema::create('participants', function (Blueprint $table) {
+//            $table->inherits('users');
+//        });
+        DB::statement("CREATE TABLE participants()INHERITS(users)");
     }
 
     /**

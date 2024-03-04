@@ -15,38 +15,16 @@
                         <table class="items-center justify-center w-full mb-0 align-top border-collapse text-slate-500">
                             <thead class="align-bottom">
                             <tr>
-                                <th
-                                    class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    ID
-                                </th>
-                                <th
-                                     class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Title
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Date
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Number of seats
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Price
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Availability
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Address
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-start uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Actions
-                                </th>
+                                <x-elements.th>
+                                    Id
+                                </x-elements.th>
+                                <x-elements.th>Title</x-elements.th>
+                                <x-elements.th>Date</x-elements.th>
+                                <x-elements.th>Number of seats</x-elements.th>
+                                <x-elements.th>Price</x-elements.th>
+                                <x-elements.th>Availability</x-elements.th>
+                                <x-elements.th>Address</x-elements.th>
+                               <x-elements.th>Actions</x-elements.th>
                             </tr>
                             </thead>
                             <tbody class="border-t">
