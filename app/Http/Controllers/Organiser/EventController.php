@@ -19,7 +19,7 @@ class EventController extends Controller
     {
         return view("organiser.index", [
             "categories" => Category::all(),
-            "events" => Event::with("category")->paginate(8),
+            "events" => Event::with("category", "images")->where("user_id", auth()->user()->id)->paginate(8),
         ]);
     }
 
@@ -28,6 +28,9 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
+        if(! request()->has("images")){
+            return back()->with("error", "informations are not correct");
+        }
         $validatedData = $request->validated();
         $event = Event::create($validatedData);
         $this->insert($event, request()->file("image"));

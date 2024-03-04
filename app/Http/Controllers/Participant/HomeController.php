@@ -11,8 +11,14 @@ class HomeController extends Controller
     public function index()
     {
         return view("participant.index", [
-            "categories" => Category::all(),
-            "events" => Event::all(),
+            "categories" => Category::with("image")->get(),
+            "events" => Event::with("organiser", "images", "category")->where("isVerified", "=",true )->get(),
         ]);
+    }
+
+    public function show (Event $event)
+    {
+        dd($event);
+
     }
 }

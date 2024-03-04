@@ -1,4 +1,4 @@
-<div id="flash-message" class="fixed right-0 bottom-0 w-[350px] z-50 transition-opacity duration-300 ease-in-out opacity-0">
+<div id="flash-message" class="fixed right-5 bottom-5 w-[350px] z-50 transition-opacity duration-300 ease-in-out opacity-0">
     @if(session()->has("success"))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">Success!</strong>

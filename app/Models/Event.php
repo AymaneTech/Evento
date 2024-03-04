@@ -25,6 +25,9 @@ class Event extends Model
         return $this->belongsTo(Category::class);
 
     }
+    public function organiser (){
+        return $this->belongsTo(User::class, "user_id");
+    }
     public function getRouteKeyName(): string
     {
         return "slug";

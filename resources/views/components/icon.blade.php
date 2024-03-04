@@ -32,6 +32,63 @@
 
         </svg>
     </button>
-@elseif($name === "update")
-    <svg fill="#ffffff" height="40px" width="40px" version="1.1" id="XMLID_218_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-7.92 -7.92 39.84 39.84" enable-background="new 0 0 24 24" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-7.92" y="-7.92" width="39.84" height="39.84" rx="19.92" fill="#0dce6a" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="update"> <g> <path d="M12,24c-4.1,0-7.8-2-10-5.4V24H0v-9h9v2H3.3c1.8,3.1,5,5,8.7,5c5.5,0,10-4.5,10-10h2C24,18.6,18.6,24,12,24z M2,12H0 C0,5.4,5.4,0,12,0c4.1,0,7.8,2,10,5.4V0h2v9h-9V7h5.7c-1.8-3.1-5-5-8.7-5C6.5,2,2,6.5,2,12z"></path> </g> </g> </g></svg>
+@elseif($name === 'update')
+    <svg fill="#ffffff" height="40px" width="40px" version="1.1" id="XMLID_218_" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-7.92 -7.92 39.84 39.84" enable-background="new 0 0 24 24"
+        xml:space="preserve" stroke="#ffffff">
+        <g id="SVGRepo_bgCarrier" stroke-width="0">
+            <rect x="-7.92" y="-7.92" width="39.84" height="39.84" rx="19.92" fill="#0dce6a" strokewidth="0">
+            </rect>
+        </g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+            <g id="update">
+                <g>
+                    <path
+                        d="M12,24c-4.1,0-7.8-2-10-5.4V24H0v-9h9v2H3.3c1.8,3.1,5,5,8.7,5c5.5,0,10-4.5,10-10h2C24,18.6,18.6,24,12,24z M2,12H0 C0,5.4,5.4,0,12,0c4.1,0,7.8,2,10,5.4V0h2v9h-9V7h5.7c-1.8-3.1-5-5-8.7-5C6.5,2,2,6.5,2,12z">
+                    </path>
+                </g>
+            </g>
+        </g>
+    </svg>
+@elseif($name === 'location')
+    <svg fill="#000000" width="40px" height="40px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M49,18.92A23.74,23.74,0,0,0,25.27,42.77c0,16.48,17,31.59,22.23,35.59a2.45,2.45,0,0,0,3.12,0c5.24-4.12,22.1-19.11,22.1-35.59A23.74,23.74,0,0,0,49,18.92Zm0,33.71a10,10,0,1,1,10-10A10,10,0,0,1,49,52.63Z">
+            </path>
+        </g>
+    </svg>
+@elseif($name === 'price')
+    <svg fill="#000000" width="35px" height="35px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M21.5,12l-.679-8.821L12,2.5,2.5,12,12,21.5ZM14.579,6.436a2.111,2.111,0,1,1,0,2.985A2.109,2.109,0,0,1,14.579,6.436Z">
+            </path>
+        </g>
+    </svg>
+@elseif($name === "left-arrow")
+    <button aria-label="slide backward"
+            class="p-2 rounded-full absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+            id="prev">
+        <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+        </svg>
+    </button>
+@elseif($name === "right-arrow")
+    <button aria-label="slide backward"
+            class="p-2 rounded-full absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+            id="prev">
+        <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+        </svg>
+    </button>
 @endif
