@@ -26,7 +26,7 @@
                                             class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <div class="flex px-2">
                                                 <div>
-                                                    <img src="{{ asset('storage/images/') }}"
+                                                    <img src="{{ asset('storage/images/'. $category->image->path) }}"
                                                         class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out rounded-full h-9 w-9"
                                                         alt="spotify" />
                                                 </div>

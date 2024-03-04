@@ -27,7 +27,7 @@ class EventFactory extends Factory
             "date" => $faker->dateTime,
             "location" => $faker->address,
             "bookingType" => BookingType::AUTOMATIC->value,
-            "user_id" => 1,
+            "organiser_id" => 1,
         ];
     }
 }

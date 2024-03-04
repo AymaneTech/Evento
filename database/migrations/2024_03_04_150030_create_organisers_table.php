@@ -14,7 +14,9 @@ return new class extends Migration {
 //        Schema::create('organisers', function (Blueprint $table) {
 //            $table->inherits('users');
 //        });
-        DB::statement("CREATE TABLE organisers()INHERITS(users)");
+        DB::statement("CREATE TABLE organisers(
+            isAccepted bool
+        )INHERITS(users)");
     }
 
     /**
