@@ -12,61 +12,49 @@
                     <div class="p-0 overflow-x-auto">
                         <table class="items-center justify-center w-full mb-0 align-top border-collapse text-slate-500">
                             <thead class="align-bottom">
-                            <tr>
-                                <th
-                                    class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    ID
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Name
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Description
-                                </th>
-                                <th
-                                    class="px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Actions
-                                </th>
-                            </tr>
+                                <tr>
+                                    <x-elements.th>Id</x-elements.th>
+                                    <x-elements.th>Name</x-elements.th>
+                                    <x-elements.th>Description</x-elements.th>
+                                    <x-elements.th>Actions</x-elements.th>
+                                </tr>
                             </thead>
                             <tbody class="border-t">
-                            @foreach ($categories as $category)
-                                <tr>
-                                    <td
-                                        class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                        <div class="flex px-2">
-                                            <div>
-                                                <img src="{{ asset("storage/images/". $category->image->path) }}"
-                                                     class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out rounded-full h-9 w-9"
-                                                     alt="spotify"/>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td
+                                            class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            <div class="flex px-2">
+                                                <div>
+                                                    <img src="{{ asset('storage/images/') }}"
+                                                        class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out rounded-full h-9 w-9"
+                                                        alt="spotify" />
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm leading-normal ">{{ $category->id }}</h6>
+                                                </div>
                                             </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm leading-normal ">{{ $category->id }}</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <x-td size="text-sm">{{ $category->name }}</x-td>
-                                    <x-td>{{ $category->description }}</x-td>
-                                    <x-td>{{ count($category->events) }}</x-td>
-                                    <td class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                        <form action="{{ route('admin.categories.destroy', $category->slug) }}"
-                                              method="post">
-                                            @method("delete")
-                                            @csrf
-                                            <x-icon name="delete"/>
-                                        </form>
-                                        <button data-modal-target="category-update" data-modal-toggle="category-update"
-                                                type="submit"
-                                                data-slug="{{ $category->slug }}"
-                                                data-name="{{ $category->name }}"
+                                        </td>
+                                        <x-elements.td size="text-sm">{{ $category->name }}</x-elements.td>
+                                        <x-elements.td>{{ $category->description }}</x-elements.td>
+                                        <x-elements.td>{{ $category->events_count }}</x-elements.td>
+                                        <td
+                                            class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            <form action="{{ route('admin.categories.destroy', $category->slug) }}"
+                                                method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <x-icon name="delete" />
+                                            </form>
+                                            <button data-modal-target="category-update"
+                                                data-modal-toggle="category-update" type="submit"
+                                                data-slug="{{ $category->slug }}" data-name="{{ $category->name }}"
                                                 data-description="{{ $category->description }}">
-                                            <x-icon name="update"/>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                                <x-icon name="update" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
@@ -76,8 +64,8 @@
             </div>
         </div>
     </div>
-    <x-modals.category-create/>
-    <x-modals.category-update/>
+    <x-modals.category-create />
+    <x-modals.category-update />
     <script src="/assets/js/category-update.js"></script>
 
 </x-layouts.dashboard-layout>

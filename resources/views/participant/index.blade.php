@@ -120,8 +120,7 @@
                                         <path d="m4 11h16"></path>
                                     </g>
                                 </svg>
-                                <span
-                                    class="text-white text-base font-sans font-medium tracking-wide">Buy a ticket</span>
+                                <span class="text-white text-base font-sans font-medium tracking-wide">Buy a ticket</span>
                             </a>
                         </div>
 

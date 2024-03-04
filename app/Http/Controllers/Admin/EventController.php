@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    public function index()
+    {
+        return view("organiser.index", [
+            "events" => Event::with("category", "images")->paginate(8),
+        ]);
+    }
+
     public function update(Request $request, Event $event)
     {
         $event->update([
