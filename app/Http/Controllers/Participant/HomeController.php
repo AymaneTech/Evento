@@ -13,11 +13,11 @@ class HomeController extends Controller
     {
         return view("participant.index", [
             "categories" => Category::with("image")->get(),
-            "events" => Event::with("organiser", "images", "category")->where("isVerified", "=",true )->get(),
+            "events" => Event::VerifiedEvents()->get(),
         ]);
     }
 
-    public function filter()
+    public function filterAndSearch()
     {
         $events = Event::filter(request(["search", "category"]))->with("images", "category", "organiser")->get();
         return response()->json($events, 200);
@@ -25,7 +25,9 @@ class HomeController extends Controller
 
     public function show (Event $event)
     {
-        dd($event);
+        return view("participant.event", [
+            "event" => $event->load("images", "category", "organiser")
+        ]);
 
     }
 }

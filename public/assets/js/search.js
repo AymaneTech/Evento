@@ -21,7 +21,7 @@ searchInput.addEventListener("keyup", (event) => {
 
 
 function sendRequest(category, search) {
-    const url = "http://localhost/filter";
+    const url = "http://localhost/filterAndSearch";
 
     const options = {
         headers: {
@@ -43,7 +43,6 @@ function sendRequest(category, search) {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
             displayData(data);
         })
         .catch(function (error) {

@@ -27,6 +27,16 @@ class Event extends Model
         );
     }
 
+    public function ScopeOrganiserEvents()
+    {
+        return Event::with("category", "images")->where("organiser_id", auth("organiser")->user()->id);
+    }
+
+    public function ScopeVerifiedEvents()
+    {
+        return Event::with("organiser", "images", "category")->where("isVerified", "=", true);
+    }
+
     public function images()
     {
         return $this->hasMany(Image::class, "imageable_id");
@@ -37,9 +47,12 @@ class Event extends Model
         return $this->belongsTo(Category::class);
 
     }
-    public function organiser (){
+
+    public function organiser()
+    {
         return $this->belongsTo(User::class, "organiser_id");
     }
+
     public function getRouteKeyName(): string
     {
         return "slug";

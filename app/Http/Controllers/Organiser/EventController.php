@@ -19,7 +19,7 @@ class EventController extends Controller
     {
         return view("organiser.index", [
             "categories" => Category::all(),
-            "events" => Event::with("category", "images")->where("organiser_id", auth("organiser")->user()->id)->paginate(8),
+            "events" => Event::OrganiserEvents()->paginate(8),
         ]);
     }
 
