@@ -15,6 +15,20 @@ class Event extends Model
         'date' => 'datetime',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return "slug";
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            "slug" => [
+                "source" => "title",
+            ]
+        ];
+    }
+
     public function ScopeFilter($query, array $filters)
     {
         $query->when($filters["search"] ?? false, fn($query, $search) => $query
@@ -45,7 +59,6 @@ class Event extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-
     }
 
     public function organiser()
@@ -53,18 +66,10 @@ class Event extends Model
         return $this->belongsTo(User::class, "organiser_id");
     }
 
-    public function getRouteKeyName(): string
+    public function bookings()
     {
-        return "slug";
+        return $this->hasMany(Booking::class);
     }
 
-    public function sluggable(): array
-    {
-        return [
-            "slug" => [
-                "source" => "title",
-            ]
-        ];
-    }
 
 }
