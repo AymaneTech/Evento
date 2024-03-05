@@ -4,11 +4,14 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Organiser\EventController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Participant\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "index"]);
+Route::post("/bookings/{event}", [BookingController::class,"store"]);
+
 Route::post("/filterAndSearch", [HomeController::class, "filterAndSearch"]);
 
 Route::get("events/{event}", [HomeController::class, "show"])->name("event.show");

@@ -5,7 +5,7 @@
                 <h1 class="font-bold text-4xl">{{ $event->title }}</h1>
             </div>
 
-            <section>
+            <section class="flex items-center gap-10">
                 <div id="default-carousel" class="my-8 relative w-[900px]" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -56,8 +56,20 @@
                         </span>
                     </button>
                 </div>
-                <div class="booking-card">
-                    {{ $event->date->format("H:i") }}
+                <div class=" text-white booking-card bg-[#003] p-12 rounded-lg w-[600px]">
+                    <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
+                    <div class="date">
+                        <p>{{ $event->date->format('l d F Y') }} on {{ $event->date->format('H:i') }} <span>in
+                                {{ $event->location }}</span></p>
+                        <p>Opening in {{ $event->date->subHour()->format('H:i') }}</p>
+                    </div>
+                    <div class="my-2">
+                            <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
+                            <button id="bookingButton" class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">Buy
+                                a ticket</button>
+                        </form>
+
+                    </div>
                 </div>
             </section>
 
@@ -82,12 +94,13 @@
                     </li>
                     <li class=""><span class="text-xl font-bold text-[#003]">date:
                         </span>{{ $event->date->diffForHumans() }}</li>
-                    <li class=""><span class="text-xl font-bold text-[#003]">Category:
+                    <li class=""><spanalert("hello")
+                        class="text-xl font-bold text-[#003]">Category:
                         </span>{{ $event->category->name }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">Location:
                         </span>{{ $event->location }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">booking type:
-                        </span>{{ $event->bookingType }}</li>
+                        </span id="bookingType">{{ $event->bookingType }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">Organiser:
                         </span>{{ $event->organiser->name }}</li>
                 </ul>
@@ -95,4 +108,5 @@
 
         </div>
     </section>
+    <script src="/assets/js/booking.js"></script>
 </x-layouts.layout>

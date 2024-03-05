@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained("participants");
             $table->foreignId("event_id")
                 ->constrained("events");
-            $table->boolean("isConfirmed");
+            $table->boolean("isConfirmed")->default(true);
             $table->timestamps();
         });
     }
