@@ -65,7 +65,7 @@
                     </div>
                     <div class="my-2">
                             <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
-                            <button id="bookingButton" class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">Buy
+                            <button data-modal-target="after-booking" data-modal-toggle="after-booking" id="bookingButton" class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">Buy
                                 a ticket</button>
                         </form>
 
@@ -108,5 +108,6 @@
 
         </div>
     </section>
+    <x-modals.afterBooking :event="$event"/>
     <script src="/assets/js/booking.js"></script>
 </x-layouts.layout>

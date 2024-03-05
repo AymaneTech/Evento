@@ -13,8 +13,11 @@ class Booking extends Model
         "participant_id",
         "isConfirmed"
     ];
-    public function events()
+    public function event()
     {
         return $this->belongsTo(Event::class);
+    }
+    public function participant(){
+        return $this->belongsTo(Participant::class);
     }
 }

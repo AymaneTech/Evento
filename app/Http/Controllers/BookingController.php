@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Booking;
 use App\Models\Event;
-use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
@@ -20,5 +18,6 @@ class BookingController extends Controller
             "participant_id" => auth("participant")->user()->id,
             "isConfirmed" => $isConfirmed,
         ]);
+        return $booking->id;
     }
 }
