@@ -15,6 +15,18 @@ class Event extends Model
         'date' => 'datetime',
     ];
 
+    public function ScopeFilter($query, array $filters)
+    {
+        $query->when($filters["search"] ?? false, fn($query, $search) => $query
+            ->where("title", "like", "%" . $search . "%")
+            ->orWhere("description", "like", "%" . $search . "%"));
+
+        $query->when($filters["category"] ?? false, fn($query, $category) => $query
+            ->whereHas('category', fn($query) => $query->where("name", $category)
+            )
+        );
+    }
+
     public function images()
     {
         return $this->hasMany(Image::class, "imageable_id");
@@ -26,7 +38,7 @@ class Event extends Model
 
     }
     public function organiser (){
-        return $this->belongsTo(User::class, "user_id");
+        return $this->belongsTo(User::class, "organiser_id");
     }
     public function getRouteKeyName(): string
     {

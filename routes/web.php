@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "index"]);
+Route::post("/filter", [HomeController::class, "filter"]);
 
 Route::get("events/{event}", [HomeController::class, "show"])->name("event.show");
 Route::group(["prefix" => "dashboard", "as" => "admin."], function (){

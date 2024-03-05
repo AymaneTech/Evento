@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Organiser;
 use App\Models\Participant;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -40,21 +41,23 @@ class RegisteredUserController extends Controller
             ],
         ]);
         if($request->role === "participant"){
-            $participant = Participant::create([
+            $user = Participant::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-            ]);
+            ])->assignRole("participant");
+            auth("participant")->login($user);
+        }else {
+            $user = Organiser::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ])->assignRole("organiser");
+            auth("organiser")->login($user);
         }
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }

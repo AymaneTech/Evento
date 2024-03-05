@@ -16,6 +16,7 @@ return new class extends Migration
 //            $table->inherits('users');
 //        });
         DB::statement("CREATE TABLE participants()INHERITS(users)");
+        DB::statement("ALTER TABLE  participants ADD CONSTRAINT  participants_id_unique UNIQUE (id);");
     }
 
     /**

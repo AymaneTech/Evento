@@ -1,5 +1,4 @@
 let defaultTransform = 0;
-console.log("hello")
 function goNext() {
     defaultTransform = defaultTransform - 398;
     var slider = document.getElementById("slider");

@@ -28,7 +28,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId("organiser_id")
-                ->constrained("organisers");
+                ->references("id")->on("organisers");
             $table->boolean("isVerified")->default(false);
             $table->timestamps();
         });

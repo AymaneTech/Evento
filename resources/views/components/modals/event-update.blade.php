@@ -12,8 +12,8 @@
                 <x-text-input placeholder="enter event" type="text" name="location"/>
             </div>
             <div class="flex justify-between gap-4 ">
-                <x-select-loop name="category_id" :data="$categories"/>
-                <x-select-enum name="bookingType" :enum="App\Enums\BookingType::cases()"/>
+                <x-elements.select-loop name="category_id" :data="$categories"/>
+                <x-elements.select-enum name="bookingType" :enum="App\Enums\BookingType::cases()"/>
                 <div class="flex flex-col">
                     <x-input-label>Event Date</x-input-label>
                     <x-text-input name="date" type="datetime-local"/>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId("participant_id")
-                ->constrained("users");
+                ->constrained("participants");
             $table->foreignId("event_id")
                 ->constrained("events");
             $table->boolean("isConfirmed");

@@ -16,7 +16,8 @@ return new class extends Migration {
 //        });
         DB::statement("CREATE TABLE organisers(
             isAccepted bool
-        )INHERITS(users)");
+        )INHERITS(users);");
+        DB::statement("ALTER TABLE organisers ADD CONSTRAINT organisers_id_unique UNIQUE (id);");
     }
 
     /**
