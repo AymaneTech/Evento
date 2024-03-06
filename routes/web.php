@@ -25,6 +25,7 @@ Route::get('/', [HomeController::class, "index"]);
 Route::get("events/{event}", [HomeController::class, "show"])->name("event.show");
 Route::get("categories/{category}", [HomeController::class, "categoryEvents"])->name("category.events");
 Route::post("/tickets/getTicket/{booking}", [TicketController::class, "getTicket"])->name("tickets.getTicket");
+Route::get("/tickets/download/{booking}", [TicketController::class, "generatePDF"])->name("tickets.download");
 
 // ajax endpoints
 Route::post("/filterAndSearch", [HomeController::class, "filterAndSearch"]);
