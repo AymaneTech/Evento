@@ -10,6 +10,7 @@ categoriesButtons.forEach((element) => {
         if (element.textContent !== "All") {
             sendRequest(element.textContent, null);
         } else {
+            resultSection.innerHTML = "";
             oldContent.classList.remove("hidden")
         }
     });
@@ -60,7 +61,6 @@ function displayData(events) {
     events.forEach(event => {
         const eventDiv = document.createElement('div');
         eventDiv.classList.add('w-[400px]', 'shadow-xl', 'p-4', 'rounded-2xl');
-
         eventDiv.innerHTML = `
             <a href="#" title="" class="block aspect-w-4 aspect-h-3">
                 <img class="object-cover w-full h-72 rounded-2xl" src="http://localhost/storage/images/${event.images[0].path}" alt=""/>

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
 
 
-    <title>NFT Tailwind Template</title>
+    <title>Evento </title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>

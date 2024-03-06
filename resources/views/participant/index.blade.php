@@ -1,19 +1,15 @@
 <x-layouts.layout>
     <div class="bg-white">
-
-
-        <section class="bg-[#FCF8F1] bg-opacity-30 py-10 sm:py-16 lg:py-24">
+        <section id="home" class="bg-[#FCF8F1] bg-opacity-30 py-10 sm:py-16 lg:py-24">
             <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
                     <div>
-                        <p class="text-base font-semibold tracking-wider text-blue-600 uppercase">A social media for
-                            learners</p>
-                        <h1 class="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">Connect & learn
-                            from the experts</h1>
-                        <p class="mt-4 text-base text-black lg:mt-8 sm:text-xl">Grow your career fast with right mentor.
+                        <p class="text-base font-semibold tracking-wider text-blue-600 uppercase">Unlock the Door to Unforgettable Events!</p>
+                        <h1 class="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">Your Event, Your Way – Book Now!</h1>
+                        <p class="mt-4 text-base text-black lg:mt-8 sm:text-xl">Embark on Your Event Journey Today!
                         </p>
 
-                        <a href="#" title=""
+                        <a href="/register" title=""
                             class="inline-flex items-center px-6 py-4 mt-8 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full lg:mt-16 hover:bg-yellow-400 focus:bg-yellow-400"
                             role="button">
                             Join for free
@@ -24,14 +20,14 @@
                             </svg>
                         </a>
 
-                        <p class="mt-5 text-gray-600">Already joined us? <a href="#" title=""
+                        <p class="mt-5 text-gray-600">Already joined us? <a href="/login" title=""
                                 class="text-black transition-all duration-200 hover:underline">Log
                                 in</a></p>
                     </div>
 
-                    <div>
+                    <div class="">
                         <img class="w-full"
-                            src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/1/hero-img.png"
+                            src="/assets/images/eventhero.jpg"
                             alt="" />
                     </div>
                 </div>
@@ -56,7 +52,7 @@
                                         src="{{ asset('storage/images/' . $category->image->path) }}" alt="">
                                     <div class="flex justify-between mb-4">
                                         <h3 class="text-2xl font-bold hover:text-blue-700">
-                                            <a href="">{{ $category->name }}</a>
+                                            <a href="{{ route("category.events", $category->slug) }}">{{ $category->name }}</a>
                                         </h3>
                                     </div>
                                     <p>{{ $category->description }}</p>
@@ -71,7 +67,7 @@
         </div>
     </section>
 
-    <section class="py-10 bg-white sm:py-16 lg:py-16">
+    <section id="events" class="py-10 bg-white sm:py-16 lg:py-16">
         <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div class="max-w-2xl mx-auto text-center">
                 <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Up Coming Events</h2>
@@ -126,6 +122,9 @@
                             {{ $event->organiser->name }} </span>
                     </div>
                 @endforeach
+                <div>
+                    {{$events->links()}}
+                </div>
 
 
             </div>

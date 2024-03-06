@@ -44,7 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function avatar(){
-        return $this->hasOne(Image::class,'imageable_id');
+
+    public function avatar()
+    {
+        return $this->hasOne(Image::class, 'imageable_id');
     }
 }

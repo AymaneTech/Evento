@@ -21,6 +21,7 @@ bookingBtn.addEventListener("click", (event) => {
             return response.json();
         })
         .then((data) => {
+            console.log(getTicketForm)
             getTicketForm.action = `http://localhost/tickets/getTicket/${data}`;
         })
         .catch(function (error) {

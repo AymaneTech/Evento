@@ -1,5 +1,5 @@
 <x-modals.modal name="event-create" width="4xl" title="Create new Event">
-    <form action="{{ route("events.store") }}" method="POST" class="p-4 md:p-5" enctype="multipart/form-data">
+    <form action="{{ route("organiser.events.store") }}" method="POST" class="p-4 md:p-5" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-col gap-4 mb-4" >
             <div class="col-span-2">
@@ -21,7 +21,6 @@
             <div class="col-span-2">
                 <x-text-input type="file" name="images[]" multiple/>
             </div>
-            <input type="hidden" name="organiser_id" value="{{ auth("organiser")->user()->id ?? 1}}">
             <div class="col-span-2">
                 <textarea id="description" rows="4" name="description"
                           class="text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"

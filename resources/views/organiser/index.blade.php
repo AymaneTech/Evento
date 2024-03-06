@@ -55,7 +55,7 @@
                                     <td
                                         class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                         @if(request()->is("organiser/*"))
-                                            <form action="{{ route('events.destroy', $event->slug) }}"
+                                            <form action="{{ route('organiser.events.destroy', $event->slug) }}"
                                                   method="post">
                                                 @method("delete")
                                                 @csrf

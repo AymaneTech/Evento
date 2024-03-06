@@ -8,7 +8,7 @@ use App\Models\Event;
 class BookingController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Create new booking .
      */
     public function store(Event $event)
     {

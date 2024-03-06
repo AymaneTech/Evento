@@ -5,7 +5,7 @@
                 <h1 class="font-bold text-4xl">{{ $event->title }}</h1>
             </div>
 
-            <section class="flex items-center gap-10">
+            <section class="flex items-center gap-10 ">
                 <div id="default-carousel" class="my-8 relative w-[900px]" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -73,19 +73,19 @@
                 </div>
             </section>
 
-            <div class="description my-12">
+            <div class="description ml-16 md:ml-0">
                 <div class="title flex gap-12 items-center my-12">
                     <h2 class="font-bold text-3xl text-[#003]">Description</h2>
                     <div class="w-full h-[2px] bg-gray-300"></div>
                 </div>
                 <p>{{ $event->description }}</p>
             </div>
-            <div class="description my-12">
-                <div class="title flex gap-12 items-center my-12">
+            <div class="description ml-16 md:ml-0">
+                <div class="title sm:mx-12 flex gap-12 items-center my-12">
                     <h2 class="font-bold text-3xl text-[#003]">More Details</h2>
                     <div class="w-full h-[2px] bg-gray-300"></div>
                 </div>
-                <ul class="grid grid-cols-1 ml-16 md:ml-0 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                <ul class="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-4 gap-4">
                     <li class=""><span class="text-xl font-bold text-[#003]">Number Of Seats:
                         </span>{{ $event->numberOfSeats }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">Taken Places:
@@ -99,8 +99,8 @@
                         </span>{{ $event->category->name }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">Location:
                         </span>{{ $event->location }}</li>
-                    <li class=""><span class="text-xl font-bold text-[#003]">booking type:
-                        </span id="bookingType">{{ $event->bookingType }}</li>
+                    <li class=""><span class="text-xl font-bold text-[#003]"><span class="bookingType">booking type:
+                        </span>{{ $event->bookingType }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">Organiser:
                         </span>{{ $event->organiser->name }}</li>
                 </ul>

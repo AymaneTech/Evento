@@ -28,10 +28,11 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
-        if(! request()->has("images")){
+        if (!request()->has("images")) {
             return back()->with("error", " are not correct");
         }
         $validatedData = $request->validated();
+        $validatedData += ["organiser_id" => auth("organiser")->user()->id ?? 1];
         $event = Event::create($validatedData);
         $this->insert($event, request()->file("images"));
         return back()->with("success", "event created successfully");
