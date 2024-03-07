@@ -17,6 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        dd(auth("participant")->user());
         return view('auth.login');
     }
 
@@ -36,7 +37,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        $guards = array_keys(config('auth.guards'));
+        foreach ($guards as $guard) {
+            if(Auth::guard($guard)->check()) Auth::guard($guard)->logout();
+        }
 
         $request->session()->invalidate();
 

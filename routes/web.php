@@ -33,10 +33,11 @@ Route::post("/filterAndSearch", [HomeController::class, "filterAndSearch"]);
 Route::post("/bookings/{event}", [BookingController::class, "store"]);
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::group(['middleware' => ['auth:admin,organiser,participant']], function () {
+    Route::resource("/profile", ProfileController::class)->only("edit", "update", "destroy");
 });
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 require __DIR__ . '/auth.php';

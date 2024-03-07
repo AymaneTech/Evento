@@ -16,8 +16,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $guardName =  Auth::guard();
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => auth($guardName->name)->user()->load("image"),
+            'userType' => $guardName->name
         ]);
     }
 

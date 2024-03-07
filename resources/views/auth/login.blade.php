@@ -1,4 +1,3 @@
-@php use App\Enums\UserType; @endphp
 <x-guest-layout>
     <main class="mt-0 transition-all duration-200 ease-in-out">
         <section>
