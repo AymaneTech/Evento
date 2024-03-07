@@ -48,8 +48,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function avatar()
+    public function image()
     {
-        return $this->hasOne(Image::class, 'imageable_id');
+        return $this->hasOne(Image::class, "imageable_id");
     }
 }

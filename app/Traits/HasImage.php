@@ -23,7 +23,7 @@ trait HasImage
         return $imageName;
     }
 
-    public function create(object $object, $image)
+    public function createImage(object $object, $image)
     {
         $imageName = $this->move($image);
         $object->image()->create([

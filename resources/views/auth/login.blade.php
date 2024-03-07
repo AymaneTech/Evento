@@ -1,3 +1,4 @@
+@php use App\Enums\UserType; @endphp
 <x-guest-layout>
     <main class="mt-0 transition-all duration-200 ease-in-out">
         <section>
@@ -16,25 +17,27 @@
                                     <form method="post" action="{{ route('login') }}" role="form">
                                         @csrf
                                         <div class="mb-4">
-                                            <x-text-input name="email" type="email" placeholder="Email" />
-                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                            <x-text-input name="email" type="email" placeholder="Email"/>
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2"/>
                                         </div>
                                         <div class="mb-4">
-                                            <x-text-input name="password" type="password" placeholder="password" />
-                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            <x-text-input name="password" type="password" placeholder="password"/>
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2"/>
                                         </div>
                                         <div class="block mt-4">
                                             <label for="remember_me" class="inline-flex items-center">
                                                 <input id="remember_me" type="checkbox"
-                                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
-                                                    name="remember">
+                                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                                       name="remember">
                                                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                                             </label>
                                         </div>
                                         <div class="text-center">
                                             <button type="submit"
-                                                class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">Sign
-                                                in</button>
+                                                    class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">
+                                                Sign
+                                                in
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -46,7 +49,7 @@
                                             up</a></p>
                                     @if (Route::has('password.request'))
                                         <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                            href="{{ route('password.request') }}">
+                                           href="{{ route('password.request') }}">
                                             {{ __('Forgot your password?') }}
                                         </a>
                                     @endif

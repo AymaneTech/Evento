@@ -5,11 +5,12 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Event extends Model
 {
-    use HasFactory, Sluggable, QueryCacheable;
+    use HasFactory, Sluggable, QueryCacheable, SoftDeletes;
 
     public int $cacheFor = 3600;
     protected static bool $flushCacheOnUpdate = true;

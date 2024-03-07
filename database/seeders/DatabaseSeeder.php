@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
             "email" => "elmainiaymane03@gmail.com",
             "password" => "123",
         ]);
-        Category::factory()
-            ->has(Event::factory()
-                ->count(4))
-            ->count(10)->create();
+//        Category::factory()
+//            ->has(Event::factory()
+//                ->count(4))
+//            ->count(10)->create();
         $this->call(RoleSeeder::class);
-//        $this->call(AdminSeeder::class);
+        $this->call(AdminSeeder::class);
     }
 }

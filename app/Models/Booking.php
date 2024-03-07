@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Booking extends Model
 {
-    use HasFactory, QueryCacheable;
+    use HasFactory, QueryCacheable, SoftDeletes;
 
     public int $cacheFor = 3600;
     protected static bool $flushCacheOnUpdate = true;
@@ -36,6 +37,7 @@ class Booking extends Model
             return $query->where("organiser_id", auth("organiser")->id());
         })->count();
     }
+
     public function event()
     {
         return $this->belongsTo(Event::class);

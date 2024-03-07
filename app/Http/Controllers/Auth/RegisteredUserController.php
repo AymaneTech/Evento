@@ -7,6 +7,7 @@ use App\Models\Organiser;
 use App\Models\Participant;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Traits\HasImage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    use HasImage;
     /**
      * Handle an incoming registration request.
      *
@@ -38,20 +40,25 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ])->assignRole("participant");
+            $this->createImage($user, $request->avatar);
             auth("participant")->login($user);
+            event(new Registered($user));
+
+            return redirect(RouteServiceProvider::HOME);
         } else {
             $user = Organiser::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ])->assignRole("organiser");
+
+            $this->createImage($user, $request->avatar);
             auth("organiser")->login($user);
+            event(new Registered($user));
+
+            return redirect(RouteServiceProvider::ORGANISER);
         }
 
-        event(new Registered($user));
-
-
-        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

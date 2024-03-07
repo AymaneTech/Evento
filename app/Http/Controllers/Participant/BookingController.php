@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Participant;
 
+use App\Events\EventBooked;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Event;
@@ -19,6 +20,7 @@ class BookingController extends Controller
             "participant_id" => auth("participant")->user()->id,
             "isConfirmed" => $isConfirmed,
         ]);
+        EventBooked::dispatch($booking);
         return $booking->id;
     }
 }

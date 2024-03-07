@@ -30,6 +30,7 @@ return new class extends Migration
             $table->foreignId("organiser_id")
                 ->references("id")->on("organisers");
             $table->boolean("isVerified")->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

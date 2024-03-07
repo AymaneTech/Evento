@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,8 +15,9 @@ return new class extends Migration
             $table->foreignId("participant_id")
                 ->constrained("participants");
             $table->foreignId("event_id")
-                ->constrained("events");
+                ->constrained("events")->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean("isConfirmed")->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

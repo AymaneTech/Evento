@@ -10,6 +10,7 @@ install:
 	./vendor/bin/sail composer require beyondcode/laravel-query-detector --dev
 	./vendor/bin/sail composer require laravel/telescope
 	./vendor/bin/sail php artisan telescope:install
-	./vendor/bin/sail composer require "matte97p/laravel-postgresql-inherit ~2.7"
-	./vendor/bin/sail composer require barryvdh/laravel-dompdf
+	./vendor/bin/sail composer require timwassenburg/laravel-service-generator --dev
+	#./vendor/bin/sail composer require "matte97p/laravel-postgresql-inherit ~2.7"
+	#./vendor/bin/sail composer require barryvdh/laravel-dompdf
 

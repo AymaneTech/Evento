@@ -32,7 +32,6 @@ function sendRequest(category, search) {
             "X-CSRF-TOKEN": token
         },
         method: 'POST',
-        credentials: "same-origin",
         body: JSON.stringify({
             search: search,
             category: category
