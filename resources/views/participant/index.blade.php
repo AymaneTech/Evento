@@ -122,7 +122,7 @@
                             {{ $event->organiser->name }} </span>
                     </div>
                 @endforeach
-                <div>
+                <div class="inline-block">
                     {{$events->links()}}
                 </div>
 

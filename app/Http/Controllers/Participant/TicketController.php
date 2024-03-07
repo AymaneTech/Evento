@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Participant;
 
+use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -19,6 +20,6 @@ class TicketController extends Controller
         $pdf = Pdf::loadView("participant.ticketPdf", [
             "booking" => $booking->load("participant", "event"),
         ]);
-        return $pdf->stream();
+        return $pdf->download();
     }
 }

@@ -57,22 +57,31 @@
             </span>
                     </button>
                 </div>
-                <div
-                    class="text-white booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
-                    <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
-                    <div class="date">
-                        <p>{{ $event->date->format('l d F Y') }} on {{ $event->date->format('H:i') }}
-                            <span>in {{ $event->location }}</span></p>
-                        <p>Opening in {{ $event->date->subHour()->format('H:i') }}</p>
+                @if(! $isAlreadyBooked)
+                    <div
+                        class="text-white booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
+                        <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
+                        <div class="date">
+                            <p>{{ $event->date->format('l d F Y') }} on {{ $event->date->format('H:i') }}
+                                <span>in {{ $event->location }}</span></p>
+                            <p>Opening in {{ $event->date->subHour()->format('H:i') }}</p>
+                        </div>
+                        <div class="my-2">
+                            <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
+                            <button data-modal-target="after-booking" data-modal-toggle="after-booking"
+                                    id="bookingButton"
+                                    class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">
+                                Buy a ticket
+                            </button>
+                        </div>
                     </div>
-                    <div class="my-2">
-                        <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
-                        <button data-modal-target="after-booking" data-modal-toggle="after-booking" id="bookingButton"
-                                class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">
-                            Buy a ticket
-                        </button>
+                @else
+                    <div
+                        class="text-white flex flex-col items-center justify-center booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
+                        <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
+                        <p class="text-center">You already take your place in this event</p>
                     </div>
-                </div>
+                @endif
             </section>
 
             <div class="description ml-16 md:ml-0">
@@ -97,9 +106,7 @@
                     <li class=""><span class="text-xl font-bold text-[#003]">date:
                         </span>{{ $event->date->diffForHumans() }}</li>
                     <li class="">
-                        <spanalert
-                        ("hello")
-                        class="text-xl font-bold text-[#003]">Category:
+                        <span class="text-xl font-bold text-[#003]">Category:
                         </span>{{ $event->category->name }}</li>
                     <li class=""><span class="text-xl font-bold text-[#003]">Location:
                         </span>{{ $event->location }}</li>
@@ -109,7 +116,6 @@
                         </span>{{ $event->organiser->name }}</li>
                 </ul>
             </div>
-
         </div>
     </section>
     <x-modals.afterBooking :event="$event"/>

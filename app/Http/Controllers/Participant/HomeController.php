@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Participant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Event;
 
@@ -21,6 +22,8 @@ class HomeController extends Controller
         return view("participant.event", [
             "event" => $event->load("images", "category", "organiser")
                 ->loadCount("bookings"),
+            "isAlreadyBooked" => Booking::where("participant_id", auth("participant")->id())
+                ->where("event_id", $event->id)->exists(),
         ]);
     }
 

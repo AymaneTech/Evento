@@ -5,10 +5,14 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Event extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, QueryCacheable;
+
+    public int $cacheFor = 3600;
+    protected static bool $flushCacheOnUpdate = true;
 
     protected $guarded = [];
     protected $casts = [
@@ -43,12 +47,12 @@ class Event extends Model
 
     public function ScopeOrganiserEvents()
     {
-        return Event::with("category", "images")->where("organiser_id", auth("organiser")->user()->id);
+        return $this->with("category", "images")->where("organiser_id", auth("organiser")->user()->id);
     }
 
     public function ScopeVerifiedEvents()
     {
-        return Event::with("organiser", "images", "category")->where("isVerified", "=", true);
+        return $this->with("organiser", "images", "category")->where("isVerified", "=", true);
     }
 
     public function images()

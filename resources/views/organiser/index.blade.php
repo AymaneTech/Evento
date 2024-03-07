@@ -24,7 +24,7 @@
                                 <x-elements.th>Price</x-elements.th>
                                 <x-elements.th>Availability</x-elements.th>
                                 <x-elements.th>Address</x-elements.th>
-                               <x-elements.th>Actions</x-elements.th>
+                                <x-elements.th>Actions</x-elements.th>
                             </tr>
                             </thead>
                             <tbody class="border-t">

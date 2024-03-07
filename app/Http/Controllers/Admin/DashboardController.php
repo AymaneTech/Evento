@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Event;
@@ -16,7 +17,7 @@ class DashboardController extends Controller
             "eventsCount" => Event::count(),
             "categoriesCount" => Category::count(),
             "todayBookings" => Booking::where("created_at", "<=", Carbon::today())->count(),
-            "bookingMoney" => Event::sum("events.price"),
+            "totalMoneyFromBookedEvents" => Event::sum("events.price"),
         ];
         return view("admin.index", [
             "statistics" => $statistics,
