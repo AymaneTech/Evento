@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validated();
         $category = Category::create($validatedData);
-        $this->create($category, request()->file("image"));
+        $this->createImage($category, request()->file("image"));
         return back()->with("success", "Category created Successfully");
     }
 

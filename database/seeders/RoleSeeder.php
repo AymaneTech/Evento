@@ -14,15 +14,15 @@ class  RoleSeeder extends Seeder
     {
         Role::create([
             'name' => 'admin',
-            "guard_name" => "web"
+            "guard_name" => "admin"
             ]);
         Role::create([
             'name' => 'organiser',
-            "guard_name" => "web"
+            "guard_name" => "organiser"
             ]);
         Role::create([
             'name' => 'participant',
-            "guard_name" => "web"
+            "guard_name" => "participant"
             ]);
     }
 }

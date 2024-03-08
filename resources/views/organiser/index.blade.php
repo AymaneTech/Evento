@@ -24,7 +24,7 @@
                                 <x-elements.th>Price</x-elements.th>
                                 <x-elements.th>Availability</x-elements.th>
                                 <x-elements.th>Address</x-elements.th>
-                               <x-elements.th>Actions</x-elements.th>
+                                <x-elements.th>Actions</x-elements.th>
                             </tr>
                             </thead>
                             <tbody class="border-t">
@@ -55,7 +55,7 @@
                                     <td
                                         class="p-2 flex gap-4 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                         @if(request()->is("organiser/*"))
-                                            <form action="{{ route('events.destroy', $event->slug) }}"
+                                            <form action="{{ route('organiser.events.destroy', $event->slug) }}"
                                                   method="post">
                                                 @method("delete")
                                                 @csrf

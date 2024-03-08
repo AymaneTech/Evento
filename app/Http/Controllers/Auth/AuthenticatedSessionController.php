@@ -26,10 +26,9 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended($request->userType->redirectTo());
     }
 
     /**
@@ -37,7 +36,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        $guards = array_keys(config('auth.guards'));
+        foreach ($guards as $guard) {
+            if(Auth::guard($guard)->check()) Auth::guard($guard)->logout();
+        }
 
         $request->session()->invalidate();
 
