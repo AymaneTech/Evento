@@ -31,7 +31,7 @@
                             @if($userType === "participant")
                                 <li class="z-30 flex-auto text-center">
                                     <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
-                                       nav-link href="javascript:;" role="tab" aria-selected="false">
+                                       nav-link href="{{ route("participant.bookings", $user->id) }}" role="tab" aria-selected="false">
                                         <i class="ni ni-email-83"></i>
                                         <span class="ml-2">My Bookings</span>
                                     </a>
@@ -39,7 +39,7 @@
                             @elseif($userType === "organiser")
                                 <li class="z-30 flex-auto text-center">
                                     <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
-                                       nav-link href="javascript:;" role="tab" aria-selected="false">
+                                       href="{{ route("organiser.events.index") }}" role="tab" aria-selected="false">
                                         <i class="ni ni-email-83"></i>
                                         <span class="ml-2">My Events</span>
                                     </a>

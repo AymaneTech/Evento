@@ -8,11 +8,6 @@
     <meta name="keywords" content="Alfurma" />
     <meta name="description" content="Alfurma" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" href="imgs/Alfurma-logo.jpg" />
-
-
     <title>Evento </title>
 
     <script src="https://cdn.tailwindcss.com"></script>

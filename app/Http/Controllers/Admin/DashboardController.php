@@ -21,7 +21,7 @@ class DashboardController extends Controller
         ];
         return view("admin.index", [
             "statistics" => $statistics,
-            "users" => User::paginate(8),
+            "users" => User::with("image")->paginate(8),
         ]);
     }
 }

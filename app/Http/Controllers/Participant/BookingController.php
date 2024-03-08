@@ -6,6 +6,7 @@ use App\Events\EventBooked;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Event;
+use App\Models\Participant;
 
 class BookingController extends Controller
 {
@@ -22,5 +23,13 @@ class BookingController extends Controller
         ]);
         EventBooked::dispatch($booking);
         return $booking->id;
+    }
+
+    public function show(Participant $participant)
+    {
+        $participant->load("bookings", "bookings.event", "bookings.event.images");
+        return view("participant.show-bookings", [
+            "bookings" => $participant->bookings,
+        ]);
     }
 }
