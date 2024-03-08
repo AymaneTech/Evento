@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.8",
         "matte97p/laravel-postgresql-inherit": "~2.7",
         "rennokki/laravel-eloquent-query-cache": "^3.4",
+        "silverhand7/laravel-artisan-maker": "^3.0",
         "spatie/laravel-permission": "^6.4"
     },
     "require-dev": {
