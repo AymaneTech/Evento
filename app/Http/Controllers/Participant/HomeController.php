@@ -19,11 +19,14 @@ class HomeController extends Controller
 
     public function show(Event $event)
     {
+        $event = $event->load("images", "category", "organiser")
+            ->loadCount("bookings");
+        $isAlreadyBooked = Booking::where("participant_id", auth("participant")->id())
+            ->where("event_id", $event->id)->exists();
+
         return view("participant.event", [
-            "event" => $event->load("images", "category", "organiser")
-                ->loadCount("bookings"),
-            "isAlreadyBooked" => Booking::where("participant_id", auth("participant")->id())
-                ->where("event_id", $event->id)->exists(),
+            "event" => $event,
+            "isAlreadyBooked" => $isAlreadyBooked,
         ]);
     }
 

@@ -18,7 +18,7 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         $event->update([
-            "isVerified" => $request->isVerified ? true : false
+            "isVerified" => (bool)$request->isVerified
         ]);
         return back()->with("success", "event edited successfully");
     }

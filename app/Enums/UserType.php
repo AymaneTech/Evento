@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Enums;
-
 enum UserType: string
 {
     case ORGANISER = "organiser";
@@ -16,5 +15,4 @@ enum UserType: string
             UserType::PARTICIPANT => "/",
         };
     }
-
 }
