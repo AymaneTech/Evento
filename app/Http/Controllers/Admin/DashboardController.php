@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use App\Models\Category;
-use App\Models\Event;
-use App\Models\User;
+use App\Models\{Booking, Category, Event, Organiser, Participant};
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -21,7 +18,8 @@ class DashboardController extends Controller
         ];
         return view("admin.index", [
             "statistics" => $statistics,
-            "users" => User::with("image")->paginate(8),
+            "participants" => Participant::withTrashed()->with("image")->paginate(8),
+            "organisers" => Organiser::withTrashed()->with("image")->paginate(8),
         ]);
     }
 }

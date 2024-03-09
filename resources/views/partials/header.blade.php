@@ -37,10 +37,12 @@
                     Contact </a>
             </div>
             <div class="flex gap-4">
-                <a href="#" title=""
-                   class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-yellow-300 hover:text-black focus:text-black focus:bg-yellow-300 font-semibold text-white bg-black rounded-full"
-                   role="button"> Join Now </a>
-                @if(auth("participant")->check())
+                @guest("participant")
+                    <a href="/register" title=""
+                       class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-yellow-300 hover:text-black focus:text-black focus:bg-yellow-300 font-semibold text-white bg-black rounded-full"
+                       role="button"> Join Now </a>
+                @endguest
+                @auth("participant")
                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                             class=""
                             type="button">
@@ -56,17 +58,20 @@
                                    class="block px-4 py-2 hover:bg-gray-100">My Profile</a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="{{ route("participant.bookings", auth("participant")->id()) }}"
                                    class="block px-4 py-2 hover:bg-gray-100">My Bookings list</a>
                             </li>
                             <li>
-                                <a href="#"
-                                   class="block px-4 py-2 hover:bg-gray-100">Sign
-                                    out</a>
+                                <form action="{{ route("logout") }}" method="post" class="hover:bg-gray-100">
+                                    @csrf
+                                    <button class="block px-4 py-2">
+                                        Log out
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>
-                @endif
+                @endauth
             </div>
         </div>
     </div>

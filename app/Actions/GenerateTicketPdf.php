@@ -8,21 +8,25 @@ use Dompdf\Options;
 
 class GenerateTicketPdf
 {
+    public function __construct(public Options $options,
+                                public Dompdf  $dompdf)
+    {
+    }
+
     public function handle(Booking $booking)
     {
         $html = view('participant.ticketPdf', compact('booking'))->render();
 
-        $options = new Options();
-        $options->set('isHtml5ParserEnabled', true);
-        $options->set('isPhpEnabled', true);
-        $dompdf = new Dompdf($options);
+        $this->options->set('isHtml5ParserEnabled', true);
+        $this->options->set('isPhpEnabled', true);
 
-        $dompdf->loadHtml($html);
+        $this->dompdf->setOptions($this->options);
+        $this->dompdf->loadHtml($html);
 
-        $dompdf->setPaper('A4', 'portrait');
+        $this->dompdf->setPaper('A4', 'portrait');
 
-        $dompdf->render();
+        $this->dompdf->render();
 
-        $dompdf->stream('ticket.pdf');
+        $this->dompdf->stream('ticket.pdf');
     }
 }

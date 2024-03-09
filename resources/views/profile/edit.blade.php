@@ -1,4 +1,4 @@
-<x-layouts.dashboard-layout>
+<x-layouts.dashboard-layout :breadcrumb="['Users ', 'Profile']">
     <div class="relative w-full mx-auto mt-60 ">
 
         <div

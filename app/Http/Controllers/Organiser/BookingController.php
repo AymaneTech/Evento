@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Organiser;
 
 use App\Actions\AcceptRequest;
-use App\Events\EventAccepted;
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use App\Models\Event;
+use App\Models\{Booking, Event};
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
     public function __construct(public AcceptRequest $action)
-    {}
+    {
+    }
 
     public function index()
     {
@@ -25,8 +24,9 @@ class BookingController extends Controller
             "statistics" => $statistics,
             "bookings" => Booking::whereHas("event", function ($query) {
                 return $query->where("organiser_id", auth("organiser")->id());
-            })->with("event", "participant")->paginate(10)]);
+            })->with("event", "participant", "event.images")->paginate(10)]);
     }
+
     public function update(Request $request, Booking $booking)
     {
         $this->action->handle($booking);

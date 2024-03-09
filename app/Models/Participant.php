@@ -8,4 +8,8 @@ class Participant extends User
     {
         return $this->hasMany(Booking::class);
     }
+    public function image()
+    {
+        return $this->hasOne(Image::class, "imageable_id");
+    }
 }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Participant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use App\Models\Category;
-use App\Models\Event;
+use App\Models\{Booking, Category, Event};
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -27,6 +26,10 @@ class HomeController extends Controller
         return view("participant.event", [
             "event" => $event,
             "isAlreadyBooked" => $isAlreadyBooked,
+            "relatedEvents" => Event::with("images", "category", "organiser")
+                ->where("category_id", $event->category->id)
+                ->whereDate("date", ">=", Carbon::now())
+                ->get()
         ]);
     }
 

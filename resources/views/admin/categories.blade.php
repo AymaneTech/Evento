@@ -1,4 +1,4 @@
-<x-layouts.dashboard-layout>
+<x-layouts.dashboard-layout :breadcrumb="['Dashboard ', 'Categories']">
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div

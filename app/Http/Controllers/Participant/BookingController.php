@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Participant;
 
 use App\Events\EventBooked;
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use App\Models\Event;
-use App\Models\Participant;
+use App\Models\{Booking, Event, Participant};
 
 class BookingController extends Controller
 {

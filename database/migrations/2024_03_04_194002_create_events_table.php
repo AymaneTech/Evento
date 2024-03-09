@@ -21,7 +21,6 @@ return new class extends Migration
             $table->float("price");
             $table->timestamp("date");
             $table->string("location");
-            $table->boolean("isFull")->default(false);
             $table->string("bookingType")->default(BookingType::AUTOMATIC->value);
             $table->foreignId("category_id")
                 ->constrained("categories")

@@ -2,19 +2,18 @@
 
 namespace App\Actions;
 
-use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Organiser;
 use App\Models\Participant;
 use App\Traits\HasImage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Testing\Fluent\Concerns\Has;
 use PharIo\Manifest\InvalidEmailException;
 
 class CreateUser
 {
     use HasImage;
+
     public function __construct(public Admin       $admin,
                                 public Participant $participant,
                                 public Organiser   $organiser)

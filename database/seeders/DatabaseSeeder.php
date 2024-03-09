@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Organiser::create([
-            "name" => "aymane",
-            "email" => "elmainiaymane03@gmail.com",
-            "password" => "123",
-        ]);
+//        Organiser::create([
+//            "name" => "aymane",
+//            "email" => "elmainiaymane03@gmail.com",
+//            "password" => "123",
+//        ]);
 //        Category::factory()
 //            ->has(Event::factory()
 //                ->count(4))

@@ -1,7 +1,7 @@
-<x-layouts.dashboard-layout>
+<x-layouts.dashboard-layout :breadcrumb="['Organiser ', 'Bookings']">
     <x-sections.statistics :statistics="$statistics"/>
 
-    <x-cards.table>
+    <x-cards.table name="all bookings">
         <thead class="align-bottom">
         <tr>
             <x-elements.th>Event Title</x-elements.th>
@@ -18,7 +18,7 @@
                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                     <div class="flex px-2 py-1">
                         <div>
-                            <img src="{{ asset("storage/images/". $booking->event->image->path) }}"
+                            <img src="{{ asset("storage/images/". $booking->event->images[0]->path) }}"
                                  class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
                                  alt="user1"/>
                         </div>
