@@ -8,4 +8,8 @@ class Organiser extends User
     {
         return $this->hasMany(Event::class);
     }
+    public function image()
+    {
+        return $this->hasOne(Image::class, "imageable_id");
+    }
 }

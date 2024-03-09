@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait HasImage
 {
     public function insert(object $object, array $images)
@@ -14,13 +16,6 @@ trait HasImage
                 "imageable_id" => $object->id,
             ]);
         }
-    }
-
-    public function move($image)
-    {
-        $imageName = time() . $image->getClientOriginalName();
-        $image->storeAs('public/images', $imageName);
-        return $imageName;
     }
 
     public function createImage(object $object, $image)
@@ -53,5 +48,12 @@ trait HasImage
                 "imageable_id" => $object->id,
             ]);
         }
+    }
+
+    public function move($image)
+    {
+        $imageName = "Image_" . time() .Str::random(8) . "." . $image->extension();
+        $image->storeAs('public/images', $imageName);
+        return $imageName;
     }
 }

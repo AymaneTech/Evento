@@ -125,8 +125,6 @@
                 <div class="inline-block">
                     {{$events->links()}}
                 </div>
-
-
             </div>
             <div id="filterResult"
                 class="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">

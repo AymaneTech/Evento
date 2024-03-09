@@ -48,6 +48,7 @@ class LoginRequest extends FormRequest
         foreach (UserType::cases() as $userType) {
             if (auth($userType->value)->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
                 $this->userType = $userType;
+                session()->put("userId", auth($this->userType->value)->id());
                 RateLimiter::clear($this->throttleKey());
                 $authenticated = true;
                 break;

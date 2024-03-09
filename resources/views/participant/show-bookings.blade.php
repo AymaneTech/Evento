@@ -1,12 +1,9 @@
-<x-layouts.dashboard-layout :breadcrumb="['Organiser ', 'Bookings']">
-    <x-sections.statistics :statistics="$statistics"/>
-
-    <x-cards.table name="all bookings">
+<x-layouts.dashboard-layout :breadcrumb="['Profile', 'Bookings']">
+    <x-cards.table name="My Bookings">
         <thead class="align-bottom">
         <tr>
             <x-elements.th>Event Title</x-elements.th>
-            <x-elements.th>Participant Name</x-elements.th>
-            <x-elements.th>Event Booking Type</x-elements.th>
+            <x-elements.th>Event date</x-elements.th>
             <x-elements.th>Booked at</x-elements.th>
             <x-elements.th>Actions</x-elements.th>
         </tr>
@@ -23,27 +20,28 @@
                                  alt="user1"/>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <h6 class="mb-0 text-sm leading-normal dark:text-white">
+                            <h6 class="mb-0 text-sm leading-normal">
                                 {{ $booking->event->title }}</h6>
                         </div>
                     </div>
                 </td>
                 <x-elements.td>
-                    {{ $booking->participant->name }}
-                </x-elements.td>
-                <x-elements.td>
-                        <span
-                            class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{ $booking->event->bookingType }}</span>
+                    {{ $booking->event->date->format("M d Y h:i") }}
                 </x-elements.td>
                 <x-elements.td> {{ $booking->created_at->diffForHumans() }}</x-elements.td>
+                <x-elements.td>{{ $booking->isConfirmed ? "Accepted" : "Waiting" }}</x-elements.td>
                 <td
-                    @if($booking->event->bookingType === "manual")
-                        class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                    <form action="{{ route("organiser.bookings.update", $booking->id) }}" method="post">
-                        @method("put")
-                        @csrf
-                        <button>{{ $booking->isConfirmed ? "Decline" : "Accept" }}</button>
-                    </form>
+                    class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                    @if($booking->isConfirmed)
+                        <form action="{{ route("tickets.getTicket", $booking->id) }}" method="post">
+                            @csrf
+                            <button
+                                class="w-fit inline-flex self-center items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">
+                                Get your ticket
+                            </button>
+                        </form>
+                    @else
+                        Not Yet !!
                     @endif
                 </td>
             </tr>
@@ -51,6 +49,5 @@
         </tbody>
 
     </x-cards.table>
-    <div>{{ $bookings->links() }}</div>
 
 </x-layouts.dashboard-layout>

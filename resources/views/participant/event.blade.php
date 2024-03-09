@@ -57,31 +57,56 @@
             </span>
                     </button>
                 </div>
-                @if(! $isAlreadyBooked)
-                    <div
-                        class="text-white booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
-                        <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
-                        <div class="date">
-                            <p>{{ $event->date->format('l d F Y') }} on {{ $event->date->format('H:i') }}
-                                <span>in {{ $event->location }}</span></p>
-                            <p>Opening in {{ $event->date->subHour()->format('H:i') }}</p>
+                @auth("participant")
+                    @if(! $isAlreadyBooked)
+                        <div
+                            class="text-white booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
+                            <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
+                            <div class="date">
+                                <p>{{ $event->date->format('l d F Y') }} on {{ $event->date->format('H:i') }}
+                                    <span>in {{ $event->location }}</span></p>
+                                <p>Opening in {{ $event->date->subHour()->format('H:i') }}</p>
+                            </div>
+                            <div class="my-2">
+                                <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
+                                <button data-modal-target="after-booking" data-modal-toggle="after-booking"
+                                        id="bookingButton"
+                                        class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">
+                                    Buy a ticket
+                                </button>
+                            </div>
                         </div>
-                        <div class="my-2">
-                            <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
-                            <button data-modal-target="after-booking" data-modal-toggle="after-booking"
-                                    id="bookingButton"
-                                    class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">
-                                Buy a ticket
-                            </button>
+                    @elseif($event->is_full)
+                        <div
+                            class="text-white booking-card bg-red-700 p-8 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
+                            <h2 class="text-center font-bold text-2xl mb-4">Evento</h2>
+                            <div class="date mb-4">
+                                <p>{{ $event->date->format('l d F Y') }} on {{ $event->date->format('H:i') }}
+                                    <span>in {{ $event->location }}</span></p>
+                                <p>Opening in {{ $event->date->subHour()->format('H:i') }}</p>
+                            </div>
+                            <div class="text-center">
+                                <input id="eventSlug" type="hidden" name="eventSlug" value="{{ $event->slug }}">
+                                <button disabled
+                                        class="inline-block px-8 py-3 font-semibold text-black bg-gray-400 rounded-full cursor-not-allowed">
+                                    All Places Taken
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <div
+                            class="text-white flex flex-col items-center justify-center booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
+                            <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
+                            <p class="text-center">You already take your place in this event</p>
+                        </div>
+                    @endif
                 @else
                     <div
                         class="text-white flex flex-col items-center justify-center booking-card bg-[#003] p-12 rounded-lg w-full md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%]">
                         <h2 class="text-center font-bold text-2xl text-white">Evento</h2>
-                        <p class="text-center">You already take your place in this event</p>
+                        <p class="text-center">You should be logged in</p>
                     </div>
-                @endif
+                @endauth
             </section>
 
             <div class="description ml-16 md:ml-0">
@@ -116,6 +141,48 @@
                         </span>{{ $event->organiser->name }}</li>
                 </ul>
             </div>
+        </div>
+    </section>
+    <section id="relatedEvents" class="mt-24 mx-auto container">
+        <div class="flex justify-center items-center">
+            <h2 class="font-bold text-4xl">Other related Events</h2>
+        </div>
+        <div id="events-section"
+             class="grid max-w-md grid-cols-1 mx-auto mt-4 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
+            @foreach ($relatedEvents as $event)
+                <div class="w-[400px] shadow-xl p-4 rounded-2xl">
+                    <a href="#" title="" class="block aspect-w-4 aspect-h-3">
+                        <img class="object-cover w-full h-72 rounded-2xl"
+                             src="{{ asset('storage/images/' . $event->images[0]->path) }}" alt="" />
+                    </a>
+                    <span
+                        class="inline-flex px-4 py-2 text-xs font-semibold tracking-widest uppercase rounded-full text-rose-500 bg-rose-100 mt-9">
+                            {{ $event->category->name }} </span>
+                    <p class="mt-6 ml-2 text-xl font-semibold">
+                        <a href="#" title="" class="text-black"> {{ $event->title }} </a>
+                    </p>
+                    <div class="flex gap-4 items-center font-semibold">
+                        <x-icon name="location" />
+                        <p class="mt-4 text-gray-600">{{ $event->location }}</p>
+                    </div>
+                    <div class="flex gap-4 items-center font-bold text-red-500">
+                        <x-icon name="price" />
+                        <p class="mt-4 ">{{ $event->price }} MAD</p>
+                    </div>
+                    <div class="flex gap-4 items-center font-bold">
+                        <x-icon name="price" />
+                        <p>{{ $event->date->format('d M y') }}</p>
+                    </div>
+                    <div class="my-2">
+                        <a href=" {{ route('event.show', $event->slug) }}" class="inline-flex items-center px-6 py-2.5 font-semibold text-black transition-all duration-200 bg-yellow-300 rounded-full hover:bg-yellow-400 focus:bg-yellow-400">Buy a ticket</a>
+
+                    </div>
+
+                    <div class="h-0 mt-6 mb-4 border-t-2 border-gray-200 border-dashed"></div>
+                    <span class="block text-sm font-bold tracking-widest text-gray-500 uppercase">
+                            {{ $event->organiser->name }} </span>
+                </div>
+            @endforeach
         </div>
     </section>
     <x-modals.afterBooking :event="$event"/>

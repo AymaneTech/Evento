@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Organiser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
-use App\Models\Category;
-use App\Models\Event;
+use App\Models\{Event, Category};
 use App\Traits\HasImage;
 
 class EventController extends Controller

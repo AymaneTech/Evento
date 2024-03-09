@@ -1,4 +1,4 @@
-<x-layouts.dashboard-layout>
+<x-layouts.dashboard-layout :breadcrumb="['Dashboard', 'Events']">
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -81,12 +81,13 @@
                                         @else
                                             <form action="{{ route("admin.events.update", $event->slug) }}"
                                                   method="post">
+                                                @method("patch")
                                                 @csrf
                                                 <input type="hidden" name="isVerified"
                                                        value="{{ ! $event->isVerified }}">
                                                 <button
                                                     class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all rounded-lg cursor-pointer text-sm ease-in shadow-md {{ $event->isVerified ? 'bg-gradient-to-tl from-zinc-800 to-zinc-700 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25' : 'bg-gradient-to-tl from-green-400 to-green-600 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem' }}">
-                                                    {{ $event->isVerified ? 'remove' : 'validate' }}
+                                                    {{ $event->isVerified ? 'Remove' : 'Accept' }}
                                                 </button>
 
                                             </form>
