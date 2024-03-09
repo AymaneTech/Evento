@@ -33,6 +33,8 @@ class CreateUser
             'email' => $userInfo["email"],
             'password' => Hash::make($userInfo["password"]),
         ])->assignRole($role);
+        session()->put("userId", $user->id);
+
         $this->createImage($user, $userInfo["avatar"]);
 
         event(new Registered($user));

@@ -1,4 +1,4 @@
-<x-layouts.dashboard-layout>
+<x-layouts.dashboard-layout :breadcrumb="['Profile', 'Bookings']">
     <x-cards.table name="My Bookings">
         <thead class="align-bottom">
         <tr>
