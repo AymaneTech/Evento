@@ -4,24 +4,22 @@ namespace App\Listeners;
 
 use App\Events\EventAccepted;
 use App\Events\EventBooked;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Services\SendMailService;
 
 class SendEmailListener
 {
     /**
      * Create the event listener.
      */
-    public function __construct()
+    public function __construct(public SendMailService $sendMailService)
     {
-        //
     }
 
     /**
      * Handle the event.
      */
-    public function handle(EventBooked|EventAccepted $event): void
+    public function handle(EventBooked|EventAccepted $event)
     {
-
+        $this->sendMailService->sendMail($event->booking);
     }
 }

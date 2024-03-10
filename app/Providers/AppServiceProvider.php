@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("slug");
+            $table->string("name")->unique();
+            $table->string("slug")->unique();
             $table->text("description");
             $table->softDeletes();
             $table->timestamps();
@@ -22,7 +22,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.w
      */
     public function down(): void
     {

@@ -54,7 +54,6 @@ class LoginRequest extends FormRequest
                 break;
             }
         }
-
         if (!$authenticated) {
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
