@@ -151,8 +151,9 @@
             <div class="p-4 bg-white dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-20">
-                        <img src="{{ asset("storage/images/". $user->image->path) }}" alt="profile_image" class="w-full h-full rounded-full shadow-2xl">
+                        <img src="{{ asset("storage/images/". $user->image->path) }}" alt="profile_image" class="w-full h-full rounded-full shadow-2xl" style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
+
                     <div>
                         <h5 class="text-xl font-semibold dark:text-white">{{ $user->name }}</h5>
                         <p class="text-sm font-semibold text-gray-600 dark:text-white">{{ $userType }}</p>
@@ -219,11 +220,12 @@
                         <p class="text-sm font-semibold">User Information</p>
                         <div class="mt-4 space-y-4">
                             <div class="flex items-center justify-between gap-12 w-25 h-25">
-                                <label class="flex-shrink-0 w-40 h-40 rounded-xl">
-                                    <img src="{{ asset("storage/images/". $user->image->path) }}" alt="">
+                                <label class="flex-shrink-0 w-40 h-40 rounded-xl overflow-hidden">
+                                    <img src="{{ asset("storage/images/". $user->image->path) }}" alt="" class="w-full h-full object-cover">
                                 </label>
                                 <input type="file" name="image" class="flex-grow px-4 py-2 text-sm rounded-lg border border-gray-300 dark:bg-slate-850 dark:text-white dark:border-gray-600">
                             </div>
+
                             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                 <div>
                                     <label for="username" class="block mb-1 text-xs font-bold text-gray-700 dark:text-white">Username</label>

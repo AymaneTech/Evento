@@ -25,12 +25,12 @@
 
             <div class="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
 
-                <a href="#home" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80">
+                <a href="/#home" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80">
                     Home</a>
-                <a href="#events" title=""
+                <a href="/#events" title=""
                    class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Events</a>
 
-                <a href="#categories" title=""
+                <a href="/#categories" title=""
                    class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Categories </a>
 
                 <a href="#" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80">

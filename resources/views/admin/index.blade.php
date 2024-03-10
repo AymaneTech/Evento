@@ -45,7 +45,7 @@
                         class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                         <div class="flex px-2 py-1">
                             <div>
-                                <img src="{{ asset("storage/images" .$organiser->image->path )}}"
+                                <img src="{{ asset("storage/images/" .$organiser->image->path )}}"
                                      class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
                                      alt="user1"/>
                             </div>
@@ -144,6 +144,7 @@
                         @else
                             <form action="{{ route('admin.usersAccess.activate', $participant->id) }}"
                                   method="post">
+                                @method("patch")
                                 @csrf
                                 <button
                                     class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-white align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-sm ease-in bg-green-600 hover:-translate-y-px active:opacity-85">

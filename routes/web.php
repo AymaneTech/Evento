@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 # dashboard
-Route::middleware("auth:admin")->prefix("dashboard")->as("admin.")->group(function () {
+Route::middleware(["is_admin",])->prefix("dashboard")->as("admin.")->group(function () {
     Route::get('/', [DashboardController::class, "index"]);
     Route::resource('categories', CategoryController::class)->except("create", "edit");
     Route::resource("events", AdminEventController::class)->only("index", "update");
@@ -28,7 +28,7 @@ Route::middleware("auth:organiser")->prefix("organiser")->as("organiser.")->grou
 # participant routes
 Route::get('/', [HomeController::class, "index"]);
 Route::get("events/{event}", [HomeController::class, "show"])->name("event.show");
-Route::get("categories/{category}", [HomeController::class, "categoryEvents"])->name("category.events");
+Route::get("categories/{category}", [HomeController::class, "eventsOfOneCategory"])->name("category.events");
 Route::post("/filterAndSearch", [HomeController::class, "filterAndSearch"]);
 
 Route::middleware("auth:participant")->group(function () {

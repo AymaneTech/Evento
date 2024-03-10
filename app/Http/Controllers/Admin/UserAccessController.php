@@ -15,7 +15,7 @@ class UserAccessController extends Controller
 
     public function activate($id)
     {
-        $user = User::withTrashed()->find($id)->first();
+        $user = User::withTrashed()->where("id", $id)->first();
         $user->restore();
         return back()->with("success", "user activated again successfully");
     }

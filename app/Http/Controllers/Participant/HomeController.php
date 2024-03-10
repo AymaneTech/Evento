@@ -22,18 +22,19 @@ class HomeController extends Controller
             ->loadCount("bookings");
         $isAlreadyBooked = Booking::where("participant_id", auth("participant")->id())
             ->where("event_id", $event->id)->exists();
+        $relatedEvents = Event::with("images", "category", "organiser")
+            ->where("category_id", $event->category->id)
+            ->whereDate("date", ">=", Carbon::now())
+            ->get();
 
         return view("participant.event", [
             "event" => $event,
             "isAlreadyBooked" => $isAlreadyBooked,
-            "relatedEvents" => Event::with("images", "category", "organiser")
-                ->where("category_id", $event->category->id)
-                ->whereDate("date", ">=", Carbon::now())
-                ->get()
+            "relatedEvents" => $relatedEvents,
         ]);
     }
 
-    public function categoryEvents(Category $category)
+    public function eventsOfOneCategory(Category $category)
     {
         return view("participant.category-events", [
             "category" => $category->load("image", "events", "events.images", "events.organiser"),

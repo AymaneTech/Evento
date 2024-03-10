@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,11 +13,16 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::create([
+        $admin = Admin::create([
             'name' => "admin",
             'email' => "admin@gmail.com",
             'email_verified_at' => now(),
-            'password' => Hash::make('password'),
+            'password' => Hash::make('123'),
         ])->assignRole("admin");
+        $admin->image()->create([
+            "path" => "profile.png",
+            "imageable_type" =>  "App\Models\Admin",
+            "imageable_id" => $admin->id,
+        ]);
     }
 }
