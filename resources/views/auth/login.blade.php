@@ -13,13 +13,13 @@
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="flex-auto p-6">
-                                    <form method="post" action="{{ route('login') }}" role="form">
+                                    <form id="loginForm" method="post" action="{{ route('login') }}" role="form">
                                         @csrf
-                                        <div class="mb-4">
+                                        <div id="formGroup" class="input-group mb-4">
                                             <x-text-input name="email" type="email" placeholder="Email"/>
                                             <x-input-error :messages="$errors->get('email')" class="mt-2"/>
                                         </div>
-                                        <div class="mb-4">
+                                        <div id="formGroup" class="input-group mb-4">
                                             <x-text-input name="password" type="password" placeholder="password"/>
                                             <x-input-error :messages="$errors->get('password')" class="mt-2"/>
                                         </div>
@@ -32,7 +32,7 @@
                                             </label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit"
+                                            <button type="submit" id="submit"
                                                     class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">
                                                 Sign
                                                 in

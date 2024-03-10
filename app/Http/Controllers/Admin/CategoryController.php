@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Traits\HasImage;
+use Illuminate\Database\QueryException;
 
 class CategoryController extends Controller
 {
@@ -28,9 +29,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        try {
         $validatedData = $request->validated();
-        $category = Category::create($validatedData);
-        $this->createImage($category, request()->file("image"));
+            $category = Category::create($validatedData);
+            $this->createImage($category, request()->file("image"));
+        }catch (QueryException $e){
+            return back()->with("error", "the title is duplicated");
+        }
         return back()->with("success", "Category created Successfully");
     }
 

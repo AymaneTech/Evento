@@ -37,7 +37,7 @@ class Event extends Model
     public function ScopeFilter($query, array $filters)
     {
         $query->when($filters["search"] ?? false, fn($query, $search) => $query
-            ->where("title", "like", "%" . $search . "%")
+            ->where("title", "ILIKE", "%" . $search . "%")
             ->orWhere("description", "like", "%" . $search . "%"));
 
         $query->when($filters["category"] ?? false, fn($query, $category) => $query
@@ -68,14 +68,16 @@ class Event extends Model
 
     public function organiser()
     {
-        return $this->belongsTo(User::class, "organiser_id");
+        return $this->belongsTo(Organiser::class, "organiser_id");
     }
 
     public function bookings()
     {
         return $this->hasMany(Booking::class);
     }
-    public function getIsFullAttribute(){
+
+    public function getIsFullAttribute()
+    {
         $bookingsCount = $this->loadCount("bookings")->bookings_count;
         return $this->numberOfSeats - $bookingsCount == 0;
     }

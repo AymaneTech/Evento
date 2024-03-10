@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Organiser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
-use App\Models\{Event, Category};
+use App\Models\{Category, Event};
 use App\Traits\HasImage;
+use Illuminate\Database\QueryException;
 
 class EventController extends Controller
 {
@@ -27,12 +28,17 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
-        if (!request()->has("images")) {
-            return back()->with("error", "image is required");
+        try {
+            if (!request()->has("images")) {
+                return back()->with("error", "image is required");
+            }
+            $validatedData = $request->validated();
+            $validatedData += ["organiser_id" => auth("organiser")->user()->id];
+
+            $event = Event::create($validatedData);
+        } catch (QueryException $e) {
+            return back()->with("error", "the title is duplicated");
         }
-        $validatedData = $request->validated();
-        $validatedData += ["organiser_id" => auth("organiser")->user()->id];
-        $event = Event::create($validatedData);
         $this->insert($event, request()->file("images"));
         return back()->with("success", "event created successfully");
     }

@@ -12,8 +12,7 @@ class SendEmailListener
      * Create the event listener.
      */
     public function __construct(public SendMailService $sendMailService)
-    {
-    }
+    {}
 
     /**
      * Handle the event.

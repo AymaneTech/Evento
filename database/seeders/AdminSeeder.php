@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('123'),
         ])->assignRole("admin");
         $admin->image()->create([
-            "path" => "profile.png",
+            "path" => "admin_profile.png",
             "imageable_type" =>  "App\Models\Admin",
             "imageable_id" => $admin->id,
         ]);

@@ -11,11 +11,16 @@ use Illuminate\Support\Facades\Mail;
  */
 class SendMailService
 {
+    public function __construct(public SendTicketMail $sendTicketMail)
+    {}
+
     public function sendMail(Booking $booking)
     {
         $booking->load("participant");
         $email = $booking->participant->email;
-        $mail = new SendTicketMail($booking);
-        Mail::to($email)->send($mail);
+
+        $this->sendTicketMail->setBooking($booking);
+
+        Mail::to($email)->send($this->sendTicketMail);
     }
 }

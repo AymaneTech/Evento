@@ -23,7 +23,7 @@ class ParticipantSeeder extends Seeder
         $participant->image()->create([
             "imageable_type" => "App\Models\Participant",
             "imageable_id" => $participant->id,
-            "path" => "profile.png"
+            "path" => "participant_profile.png"
         ]);
     }
 }

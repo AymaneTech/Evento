@@ -20,7 +20,7 @@ class OrganiserSeeder extends Seeder
             'password' => Hash::make('123'),
         ])->assignRole("organiser");
         $organiser->image()->create([
-            "path" => "profile.png",
+            "path" => "organiser_profile.png",
             "imageable_type" => "App\Models\Organiser",
             "imageable_id" => $organiser->id,
         ]);

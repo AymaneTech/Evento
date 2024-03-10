@@ -11,12 +11,18 @@ class SendTicketMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $booking;
+
     /**
      * Create a new message instance.
      */
-    public function __construct(public Booking $booking)
+    public function __construct()
     {
-        //
+    }
+
+    public function setBooking(Booking $booking)
+    {
+        $this->booking = $booking;
     }
 
     /**
