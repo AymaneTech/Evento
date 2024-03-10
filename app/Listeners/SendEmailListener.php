@@ -20,6 +20,6 @@ class SendEmailListener
      */
     public function handle(EventBooked|EventAccepted $event)
     {
-//        $this->sendMailService->sendMail($event->booking);
+        $this->sendMailService->sendMail($event->booking);
     }
 }
