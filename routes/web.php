@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\{CategoryController,
+use App\Http\Controllers\Admin\{BookingController as AdminBookingController,
+    CategoryController,
     DashboardController,
     EventController as AdminEventController,
     UserAccessController};
@@ -15,6 +16,7 @@ Route::middleware(["is_admin",])->prefix("dashboard")->as("admin.")->group(funct
     Route::get('/', [DashboardController::class, "index"]);
     Route::resource('categories', CategoryController::class)->except("create", "edit");
     Route::resource("events", AdminEventController::class)->only("index", "update");
+    Route::get("/bookings", [AdminBookingController::class, "index"])->name("bookings.index");
     Route::delete("users/{user}/suspend", [UserAccessController::class, "suspend"])->name("usersAccess.suspend");
     Route::patch("users/{id}/activate", [UserAccessController::class, "activate"])->name("usersAccess.activate");
 });

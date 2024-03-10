@@ -77,7 +77,7 @@ class Event extends Model
     }
     public function getIsFullAttribute(){
         $bookingsCount = $this->loadCount("bookings")->bookings_count;
-        return $this->numberOfSeats - $bookingsCount <= 0;
+        return $this->numberOfSeats - $bookingsCount == 0;
     }
 
 
